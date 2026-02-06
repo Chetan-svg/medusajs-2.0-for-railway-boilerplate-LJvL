@@ -26,6 +26,16 @@ export const getCollectionByHandle = cache(async function (
     .then(({ collections }) => collections[0])
 })
 
+export const listCollections = cache(async function (
+  options: { fields?: string } = {}
+): Promise<{ collections: HttpTypes.StoreCollection[] }> {
+  const queryOptions: Record<string, any> = { limit: 100 }
+
+  return sdk.store.collection
+    .list(queryOptions, { next: { tags: ["collections"] } })
+    .then(({ collections }) => ({ collections }))
+})
+
 export const getCollectionsWithProducts = cache(
   async (countryCode: string): Promise<HttpTypes.StoreCollection[] | null> => {
     const { collections } = await getCollectionsList(0, 3)

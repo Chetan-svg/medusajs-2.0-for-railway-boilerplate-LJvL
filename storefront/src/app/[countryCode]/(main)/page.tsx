@@ -7,6 +7,8 @@ import BrandMarquee from "@modules/home/components/brand-marquee"
 import CollectionBanner from "@modules/home/components/collection-banner"
 import CategoryGrid from "@modules/home/components/category-grid"
 import Testimonials from "@modules/home/components/testimonials"
+import TrustBadges from "@modules/home/components/trust-badges"
+import CTABanner from "@modules/home/components/cta-banner"
 import { getCollectionsWithProducts } from "@lib/data/collections"
 import { getCollectionsList } from "@lib/data/collections"
 import { listCategories } from "@lib/data/categories"
@@ -99,8 +101,14 @@ export default async function Home({
         </div>
       )}
 
+      {/* Trust Badges - Why Choose Us */}
+      <TrustBadges />
+
       {/* Customer Testimonials */}
       <Testimonials />
+
+      {/* B2B CTA Banner */}
+      <CTABanner />
     </>
   )
 }

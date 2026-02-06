@@ -65,7 +65,7 @@ export default function CollectionBanner({
                   {["PLCs & Controllers", "Drives & Motors", "Sensors & Safety", "HMI & Displays", "Power Supplies"].map((name) => (
                     <LocalizedClientLink
                       key={name}
-                      href="/collections"
+                      href="/store"
                       className="group flex items-center gap-4 py-3 border-b border-slate-700 hover:border-amber-500 transition-all duration-300"
                     >
                       <span className="text-lg sm:text-xl font-bold text-slate-300 group-hover:text-white uppercase tracking-wide transition-colors">
