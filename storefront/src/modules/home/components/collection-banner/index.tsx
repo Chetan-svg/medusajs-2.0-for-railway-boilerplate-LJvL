@@ -6,6 +6,9 @@ export default function CollectionBanner({
 }: {
   collections?: HttpTypes.StoreCollection[]
 }) {
+  // Filter to only show collections that have valid handles
+  const validCollections = collections?.filter(c => c.handle && c.title) || []
+
   return (
     <section className="w-full bg-slate-900 text-white relative overflow-hidden">
       {/* Grid pattern */}
@@ -40,8 +43,8 @@ export default function CollectionBanner({
 
             {/* Collection links */}
             <div className="space-y-4">
-              {collections && collections.length > 0 ? (
-                collections.slice(0, 6).map((collection) => (
+              {validCollections.length > 0 ? (
+                validCollections.slice(0, 6).map((collection) => (
                   <LocalizedClientLink
                     key={collection.id}
                     href={`/collections/${collection.handle}`}
@@ -61,11 +64,12 @@ export default function CollectionBanner({
                   </LocalizedClientLink>
                 ))
               ) : (
+                // Fallback when no collections - all link to store page
                 <>
                   {["PLCs & Controllers", "Drives & Motors", "Sensors & Safety", "HMI & Displays", "Power Supplies"].map((name) => (
                     <LocalizedClientLink
                       key={name}
-                      href="/collections"
+                      href="/store"
                       className="group flex items-center gap-4 py-3 border-b border-slate-700 hover:border-amber-500 transition-all duration-300"
                     >
                       <span className="text-lg sm:text-xl font-bold text-slate-300 group-hover:text-white uppercase tracking-wide transition-colors">
@@ -87,10 +91,10 @@ export default function CollectionBanner({
 
             <div className="mt-10">
               <LocalizedClientLink
-                href="/collections"
+                href="/store"
                 className="inline-flex items-center justify-center bg-amber-500 text-slate-900 px-8 py-4 font-black text-sm uppercase tracking-wider hover:bg-amber-400 transition-all duration-300"
               >
-                View All Collections
+                Browse All Products
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
                 </svg>
