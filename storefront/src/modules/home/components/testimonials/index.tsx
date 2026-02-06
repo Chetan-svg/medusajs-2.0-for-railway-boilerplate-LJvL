@@ -51,7 +51,10 @@ const TestimonialCard = ({
   text,
   verified,
 }: (typeof testimonials)[0]) => (
-  <div className="flex-shrink-0 w-[320px] sm:w-[360px] bg-white border border-gray-200 p-6 group hover:border-slate-300 transition-all duration-300">
+  <div className="flex-shrink-0 w-[320px] sm:w-[360px] border border-gray-200 p-6 relative group hover:border-amber-500 transition-all duration-300">
+    {/* Corner accent */}
+    <div className="absolute top-0 left-0 w-4 h-4 border-l-2 border-t-2 border-amber-500" />
+
     <div className="mb-4">
       <StarRating rating={rating} />
     </div>
@@ -62,7 +65,7 @@ const TestimonialCard = ({
 
     <div className="flex items-center gap-3 border-t border-gray-100 pt-4">
       <div className="w-10 h-10 bg-slate-900 flex items-center justify-center">
-        <span className="text-xs font-semibold text-white">
+        <span className="text-xs font-bold text-amber-500">
           {name
             .split(" ")
             .map((n) => n[0])
@@ -71,10 +74,10 @@ const TestimonialCard = ({
       </div>
       <div>
         <div className="flex items-center gap-1.5">
-          <span className="text-sm font-semibold text-slate-900">{name}</span>
+          <span className="text-sm font-bold text-slate-900">{name}</span>
           {verified && (
             <svg
-              className="w-3.5 h-3.5 text-slate-400"
+              className="w-3.5 h-3.5 text-amber-500"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -86,7 +89,7 @@ const TestimonialCard = ({
             </svg>
           )}
         </div>
-        <span className="text-xs text-slate-500">
+        <span className="text-xs text-slate-400 uppercase tracking-wider">
           {company}
         </span>
       </div>
@@ -96,9 +99,15 @@ const TestimonialCard = ({
 
 const Testimonials = () => {
   return (
-    <section className="w-full py-20 sm:py-24 bg-gray-50">
+    <section className="w-full py-16 sm:py-20 bg-gray-50">
       <div className="content-container mb-10">
-        <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-2 h-2 bg-amber-500" />
+          <span className="text-xs font-bold text-amber-600 uppercase tracking-[0.15em]">
+            Testimonials
+          </span>
+        </div>
+        <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight uppercase">
           Trusted by Engineers
         </h2>
       </div>
