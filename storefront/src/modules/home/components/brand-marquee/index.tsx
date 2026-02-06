@@ -15,16 +15,12 @@ const brands = [
 
 const BrandCard = ({ name, initials }: { name: string; initials: string }) => (
   <div className="flex-shrink-0 mx-3">
-    <div className="group relative w-36 h-24 sm:w-44 sm:h-28 bg-white border border-gray-200 flex items-center justify-center transition-all duration-300 hover:border-amber-500 hover:shadow-lg cursor-default">
-      {/* Corner accents on hover */}
-      <div className="absolute top-0 left-0 w-3 h-3 border-l-2 border-t-2 border-transparent group-hover:border-amber-500 transition-all duration-300" />
-      <div className="absolute bottom-0 right-0 w-3 h-3 border-r-2 border-b-2 border-transparent group-hover:border-amber-500 transition-all duration-300" />
-
+    <div className="group w-36 h-24 sm:w-44 sm:h-28 bg-white border border-gray-200 flex items-center justify-center transition-all duration-300 hover:border-slate-300 cursor-default">
       <div className="flex flex-col items-center gap-2">
         <span className="text-2xl sm:text-3xl font-black text-gray-200 group-hover:text-slate-800 transition-colors duration-300 tracking-tight">
           {initials}
         </span>
-        <span className="text-[8px] sm:text-[9px] text-gray-400 group-hover:text-amber-600 transition-colors duration-300 font-bold uppercase tracking-[0.15em]">
+        <span className="text-[9px] text-gray-400 group-hover:text-slate-600 transition-colors duration-300 font-medium uppercase tracking-[0.1em]">
           {name}
         </span>
       </div>
@@ -37,18 +33,14 @@ const BrandMarquee = () => {
 
   return (
     <section
-      className="w-full py-10 sm:py-14 bg-white overflow-hidden border-b border-gray-100"
+      className="w-full py-16 sm:py-20 bg-white overflow-hidden border-b border-gray-100"
       role="region"
       aria-label="Trusted brand partners"
     >
-      <div className="content-container mb-8">
-        <div className="flex items-center gap-3 justify-center">
-          <div className="w-8 h-[2px] bg-amber-500" />
-          <p className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em]">
-            Trusted by Industry Leaders
-          </p>
-          <div className="w-8 h-[2px] bg-amber-500" />
-        </div>
+      <div className="content-container mb-10">
+        <p className="text-sm text-slate-500 text-center">
+          Trusted by Industry Leaders
+        </p>
       </div>
 
       <div className="relative">

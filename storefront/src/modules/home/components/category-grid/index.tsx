@@ -4,8 +4,8 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 const CategoryIcon = ({ name }: { name: string }) => {
   const initial = name.charAt(0).toUpperCase()
   return (
-    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-slate-100 group-hover:bg-amber-500 flex items-center justify-center transition-all duration-300">
-      <span className="text-2xl sm:text-3xl font-black text-slate-300 group-hover:text-white transition-colors duration-300">
+    <div className="w-14 h-14 sm:w-16 sm:h-16 bg-slate-100 group-hover:bg-slate-900 flex items-center justify-center transition-colors duration-300">
+      <span className="text-xl sm:text-2xl font-bold text-slate-300 group-hover:text-white transition-colors duration-300">
         {initial}
       </span>
     </div>
@@ -24,30 +24,22 @@ export default function CategoryGrid({
   if (topCategories.length === 0) return null
 
   return (
-    <section className="w-full py-16 sm:py-20 bg-white">
+    <section className="w-full py-20 sm:py-24 bg-white">
       <div className="content-container">
         {/* Section Header */}
-        <div className="mb-12">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-2 h-2 bg-amber-500" />
-            <span className="text-xs font-bold text-amber-600 uppercase tracking-[0.15em]">
-              Browse Categories
-            </span>
-          </div>
-          <div className="flex items-end justify-between">
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight uppercase">
-              Shop by Category
-            </h2>
-            <LocalizedClientLink
-              href="/store"
-              className="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-amber-600 transition-colors uppercase tracking-wider"
-            >
-              View All
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </LocalizedClientLink>
-          </div>
+        <div className="mb-12 flex items-end justify-between">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
+            Shop by Category
+          </h2>
+          <LocalizedClientLink
+            href="/store"
+            className="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors"
+          >
+            View All
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </LocalizedClientLink>
         </div>
 
         {/* Category Grid */}
@@ -56,19 +48,16 @@ export default function CategoryGrid({
             <LocalizedClientLink
               key={category.id}
               href={`/categories/${category.handle}`}
-              className="group relative border border-gray-200 hover:border-amber-500 p-6 transition-all duration-300 hover:shadow-lg"
+              className="group border border-gray-200 hover:border-slate-300 p-6 transition-all duration-300"
             >
-              {/* Corner accent */}
-              <div className="absolute top-0 right-0 w-6 h-6 border-r-2 border-t-2 border-transparent group-hover:border-amber-500 transition-all duration-300" />
-
               <CategoryIcon name={category.name} />
 
-              <h3 className="mt-4 text-sm sm:text-base font-bold text-slate-900 uppercase tracking-wide">
+              <h3 className="mt-4 text-sm sm:text-base font-semibold text-slate-900">
                 {category.name}
               </h3>
 
               {/* Arrow indicator */}
-              <div className="mt-4 flex items-center gap-1 text-xs font-medium text-slate-400 group-hover:text-amber-600 transition-colors">
+              <div className="mt-4 flex items-center gap-1 text-xs font-medium text-slate-400 group-hover:text-slate-600 transition-colors">
                 Explore
                 <svg className="w-3 h-3 translate-x-0 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -82,7 +71,7 @@ export default function CategoryGrid({
         <div className="mt-8 text-center sm:hidden">
           <LocalizedClientLink
             href="/store"
-            className="inline-flex items-center gap-2 text-sm font-medium text-amber-600 uppercase tracking-wider"
+            className="inline-flex items-center gap-2 text-sm font-medium text-slate-600"
           >
             View All Categories
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
