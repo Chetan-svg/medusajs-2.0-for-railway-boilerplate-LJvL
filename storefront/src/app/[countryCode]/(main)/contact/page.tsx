@@ -109,39 +109,6 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Phone */}
-              <div className="flex gap-4">
-                <div className="w-12 h-12 bg-slate-200 flex items-center justify-center flex-shrink-0">
-                  <svg
-                    className="w-6 h-6 text-slate-700"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-bold text-slate-900 uppercase tracking-wide mb-1">
-                    Phone
-                  </h3>
-                  <p className="text-slate-600 text-sm mb-2">
-                    Monday - Friday, 9:00 AM - 6:00 PM EST
-                  </p>
-                  <a
-                    href="tel:+18005550199"
-                    className="text-amber-600 hover:text-amber-700 font-medium"
-                  >
-                    +1 800-555-0199
-                  </a>
-                </div>
-              </div>
-
               {/* Address */}
               <div className="flex gap-4">
                 <div className="w-12 h-12 bg-slate-200 flex items-center justify-center flex-shrink-0">
@@ -278,7 +245,7 @@ export default function ContactPage() {
                     id="phone"
                     name="phone"
                     className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors"
-                    placeholder="+1 800-555-0199"
+                    placeholder="Your phone number"
                   />
                 </div>
               </div>

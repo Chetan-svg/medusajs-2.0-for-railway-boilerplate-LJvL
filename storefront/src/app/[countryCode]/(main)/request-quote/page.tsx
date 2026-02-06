@@ -80,7 +80,7 @@ export default function RequestQuotePage() {
                       type="tel"
                       required
                       className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors"
-                      placeholder="+1 800-555-0199"
+                      placeholder="Your phone number"
                     />
                   </div>
                 </div>
@@ -352,16 +352,6 @@ export default function RequestQuotePage() {
                   Our sales team is available for direct consultation.
                 </p>
                 <div className="space-y-2 text-sm">
-                  <p>
-                    <strong>Phone:</strong>
-                    <br />
-                    <a
-                      href="tel:+18005550199"
-                      className="text-amber-600 hover:underline"
-                    >
-                      +1 800-555-0199
-                    </a>
-                  </p>
                   <p>
                     <strong>Email:</strong>
                     <br />

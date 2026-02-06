@@ -224,7 +224,7 @@ export default function CreditApplicationPage() {
                       type="tel"
                       required
                       className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors"
-                      placeholder="+1 800-555-0199"
+                      placeholder="Your phone number"
                     />
                   </div>
                 </div>

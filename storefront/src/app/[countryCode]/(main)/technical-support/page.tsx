@@ -144,7 +144,7 @@ export default function TechnicalSupportPage() {
             Get Technical Support
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-1 max-w-md gap-6">
             <div className="bg-slate-900 text-white p-8">
               <svg
                 className="w-10 h-10 text-amber-500 mb-4"
@@ -172,68 +172,6 @@ export default function TechnicalSupportPage() {
               <p className="text-xs text-slate-500 mt-2">
                 Response within 24 hours
               </p>
-            </div>
-
-            <div className="bg-slate-100 p-8">
-              <svg
-                className="w-10 h-10 text-slate-700 mb-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                />
-              </svg>
-              <h3 className="font-bold text-slate-900 uppercase tracking-wide mb-2">
-                Phone
-              </h3>
-              <p className="text-slate-600 text-sm mb-4">
-                Speak directly with our technical team.
-              </p>
-              <a
-                href="tel:+18005550199"
-                className="text-amber-600 hover:text-amber-700 font-medium"
-              >
-                +1 800-555-0199
-              </a>
-              <p className="text-xs text-slate-500 mt-2">
-                Mon-Fri, 9 AM - 6 PM EST
-              </p>
-            </div>
-
-            <div className="bg-slate-100 p-8">
-              <svg
-                className="w-10 h-10 text-slate-700 mb-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                />
-              </svg>
-              <h3 className="font-bold text-slate-900 uppercase tracking-wide mb-2">
-                WhatsApp
-              </h3>
-              <p className="text-slate-600 text-sm mb-4">
-                Quick questions and photo sharing.
-              </p>
-              <a
-                href="https://wa.me/18005550199"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-amber-600 hover:text-amber-700 font-medium"
-              >
-                +1 800-555-0199
-              </a>
-              <p className="text-xs text-slate-500 mt-2">Available 24/7</p>
             </div>
           </div>
         </section>
@@ -279,7 +217,7 @@ export default function TechnicalSupportPage() {
                   <input
                     type="tel"
                     className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors"
-                    placeholder="+1 800-555-0199"
+                    placeholder="Your phone number"
                   />
                 </div>
                 <div>

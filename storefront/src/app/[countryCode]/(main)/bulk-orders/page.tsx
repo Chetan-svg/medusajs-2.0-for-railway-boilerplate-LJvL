@@ -290,12 +290,6 @@ export default function BulkOrdersPage() {
             >
               Request a Quote
             </LocalizedClientLink>
-            <a
-              href="tel:+18005550199"
-              className="inline-flex items-center justify-center border-2 border-slate-600 text-white px-8 py-4 font-black text-sm uppercase tracking-wider hover:border-amber-500 transition-all"
-            >
-              Call Sales: +1 800-555-0199
-            </a>
           </div>
         </section>
       </div>
