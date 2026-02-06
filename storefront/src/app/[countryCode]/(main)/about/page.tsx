@@ -4,7 +4,7 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 export const metadata: Metadata = {
   title: "About Us | ShopEnGenie",
   description:
-    "India's trusted B2B marketplace for industrial automation parts. Learn about our mission to power Indian manufacturing with quality MRO supplies.",
+    "Your trusted B2B marketplace for industrial automation parts. Learn about our mission to power American manufacturing with quality MRO supplies.",
 }
 
 export default function AboutPage() {
@@ -20,13 +20,13 @@ export default function AboutPage() {
             </span>
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-6 uppercase">
-            Powering Indian
+            Powering American
             <br />
             <span className="text-amber-500">Manufacturing</span>
           </h1>
           <p className="text-slate-400 text-lg max-w-2xl">
             Your trusted partner for industrial automation parts, serving
-            manufacturing facilities across India with genuine products and
+            manufacturing facilities across the USA with genuine products and
             expert support.
           </p>
         </div>
@@ -46,7 +46,7 @@ export default function AboutPage() {
               hassle of traditional procurement channels.
             </p>
             <p className="text-slate-600 leading-relaxed mb-6">
-              We&apos;ve built India&apos;s most comprehensive B2B marketplace for
+              We&apos;ve built a comprehensive B2B marketplace for
               industrial MRO (Maintenance, Repair, and Operations) supplies,
               connecting manufacturers directly with authorized distributors and
               OEM suppliers.
@@ -121,7 +121,7 @@ export default function AboutPage() {
               {
                 title: "Same-Day Dispatch",
                 description:
-                  "Orders placed before 2 PM on in-stock items ship the same day. Pan-India delivery with tracking.",
+                  "Orders placed before 2 PM EST on in-stock items ship the same day. Nationwide delivery with tracking.",
                 icon: (
                   <path
                     strokeLinecap="round"
@@ -173,7 +173,7 @@ export default function AboutPage() {
               {
                 title: "Secure Payments",
                 description:
-                  "Multiple payment options including bank transfer, credit cards, and UPI. GST invoices provided.",
+                  "Multiple payment options including bank transfer, credit cards, and ACH. Itemized invoices provided.",
                 icon: (
                   <path
                     strokeLinecap="round"

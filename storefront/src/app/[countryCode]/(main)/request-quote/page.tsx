@@ -80,7 +80,7 @@ export default function RequestQuotePage() {
                       type="tel"
                       required
                       className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors"
-                      placeholder="+91 98765 43210"
+                      placeholder="+1 800-555-0199"
                     />
                   </div>
                 </div>
@@ -356,24 +356,24 @@ export default function RequestQuotePage() {
                     <strong>Phone:</strong>
                     <br />
                     <a
-                      href="tel:+919876543210"
+                      href="tel:+18005550199"
                       className="text-amber-600 hover:underline"
                     >
-                      +91 98765 43210
+                      +1 800-555-0199
                     </a>
                   </p>
                   <p>
                     <strong>Email:</strong>
                     <br />
                     <a
-                      href="mailto:sales@shopengenie.com"
+                      href="mailto:chetan@shopengenie.com"
                       className="text-amber-600 hover:underline"
                     >
-                      sales@shopengenie.com
+                      chetan@shopengenie.com
                     </a>
                   </p>
                   <p className="text-slate-500 text-xs mt-3">
-                    Mon - Sat, 9 AM - 6 PM IST
+                    Mon - Fri, 9 AM - 6 PM EST
                   </p>
                 </div>
               </div>

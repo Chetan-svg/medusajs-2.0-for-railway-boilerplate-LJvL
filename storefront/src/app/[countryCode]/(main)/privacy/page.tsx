@@ -48,7 +48,7 @@ export default function PrivacyPage() {
               <li>Business name, contact person name, and job title</li>
               <li>Email address and phone number</li>
               <li>Billing and shipping addresses</li>
-              <li>GST/Tax identification numbers</li>
+              <li>Tax identification numbers (EIN/Tax ID)</li>
               <li>Payment information (processed securely by payment providers)</li>
             </ul>
 
@@ -183,10 +183,10 @@ export default function PrivacyPage() {
             <p className="mt-4">
               To exercise these rights, contact us at{" "}
               <a
-                href="mailto:privacy@shopengenie.com"
+                href="mailto:chetan@shopengenie.com"
                 className="text-amber-600 hover:underline"
               >
-                privacy@shopengenie.com
+                chetan@shopengenie.com
               </a>
               .
             </p>
@@ -242,10 +242,10 @@ export default function PrivacyPage() {
               <p>
                 <strong>Email:</strong>{" "}
                 <a
-                  href="mailto:privacy@shopengenie.com"
+                  href="mailto:chetan@shopengenie.com"
                   className="text-amber-600"
                 >
-                  privacy@shopengenie.com
+                  chetan@shopengenie.com
                 </a>
               </p>
               <p className="mt-2">
@@ -253,10 +253,10 @@ export default function PrivacyPage() {
                 <br />
                 ShopEnGenie Industrial Supplies
                 <br />
-                Data Protection Officer
+                Privacy Officer
                 <br />
-                123 Industrial Area, Phase 2<br />
-                Bengaluru, Karnataka 560058, India
+                1234 Industrial Parkway, Suite 100<br />
+                Houston, TX 77001, USA
               </p>
             </div>
           </section>

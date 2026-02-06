@@ -49,7 +49,7 @@ const TrustBadges = () => {
               ),
             },
             {
-              title: "Pan-India",
+              title: "Nationwide",
               subtitle: "Delivery",
               icon: (
                 <path

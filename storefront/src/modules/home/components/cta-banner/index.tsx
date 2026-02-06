@@ -32,7 +32,7 @@ const CTABanner = () => {
             <div className="w-12 h-1 bg-amber-500 mb-6" />
 
             <p className="text-slate-400 text-base leading-relaxed mb-8 max-w-lg">
-              Join thousands of manufacturing facilities across India who trust
+              Join thousands of manufacturing facilities across the USA who trust
               ShopEnGenie for their industrial automation needs. Get volume
               discounts, credit terms, and dedicated support.
             </p>

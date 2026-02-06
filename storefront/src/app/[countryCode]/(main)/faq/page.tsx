@@ -17,11 +17,11 @@ const faqs = [
       },
       {
         q: "What payment methods do you accept?",
-        a: "We accept all major credit cards (Visa, Mastercard, Amex), debit cards, UPI, net banking, and bank transfers (NEFT/RTGS/IMPS). For approved accounts, we also offer credit terms.",
+        a: "We accept all major credit cards (Visa, Mastercard, Amex), debit cards, ACH transfers, and wire transfers. For approved accounts, we also offer credit terms.",
       },
       {
-        q: "Can I get a GST invoice?",
-        a: "Absolutely. All orders receive GST-compliant invoices. Please ensure your GST number is correctly entered in your account settings for proper invoicing and input tax credit.",
+        q: "Can I get an itemized invoice?",
+        a: "Absolutely. All orders receive detailed, itemized invoices. Please ensure your company tax ID is correctly entered in your account settings for proper invoicing.",
       },
       {
         q: "Is there a minimum order value?",
@@ -62,8 +62,8 @@ const faqs = [
         a: "We offer standard shipping (5-7 business days), express shipping (2-3 business days), and same-day dispatch for in-stock items ordered before 2 PM. Shipping costs vary by location and order value.",
       },
       {
-        q: "Do you ship pan-India?",
-        a: "Yes, we deliver to all serviceable pin codes across India. Remote locations may have slightly longer delivery times. Enter your pin code at checkout for estimated delivery dates.",
+        q: "Do you ship nationwide?",
+        a: "Yes, we deliver to all 50 US states including Alaska and Hawaii. Remote locations may have slightly longer delivery times. Enter your zip code at checkout for estimated delivery dates.",
       },
       {
         q: "How can I track my order?",
@@ -126,7 +126,7 @@ const faqs = [
       },
       {
         q: "How do I update my company information?",
-        a: "Log into your account and navigate to Account Settings. You can update contact information, shipping addresses, and GST details. For changes to company name or GST number, please contact support.",
+        a: "Log into your account and navigate to Account Settings. You can update contact information, shipping addresses, and tax details. For changes to company name or tax ID, please contact support.",
       },
     ],
   },
@@ -215,8 +215,8 @@ export default function FAQPage() {
               Still Have Questions?
             </h2>
             <p className="text-slate-400 mb-6">
-              Our support team is available Monday through Saturday, 9 AM to 6 PM
-              IST. We typically respond within 24 hours.
+              Our support team is available Monday through Friday, 9 AM to 6 PM
+              EST. We typically respond within 24 hours.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <LocalizedClientLink
@@ -226,10 +226,10 @@ export default function FAQPage() {
                 Contact Support
               </LocalizedClientLink>
               <a
-                href="mailto:support@shopengenie.com"
+                href="mailto:chetan@shopengenie.com"
                 className="inline-flex items-center justify-center border-2 border-slate-600 text-white px-6 py-3 font-bold text-sm uppercase tracking-wider hover:border-amber-500 transition-all"
               >
-                support@shopengenie.com
+                chetan@shopengenie.com
               </a>
             </div>
           </div>

@@ -290,10 +290,10 @@ export default function ReturnsPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href="mailto:returns@shopengenie.com"
+                  href="mailto:chetan@shopengenie.com"
                   className="inline-flex items-center justify-center bg-amber-500 text-slate-900 px-6 py-3 font-bold text-sm uppercase tracking-wider hover:bg-amber-400 transition-all"
                 >
-                  Email: returns@shopengenie.com
+                  Email: chetan@shopengenie.com
                 </a>
                 <LocalizedClientLink
                   href="/contact"

@@ -17,7 +17,7 @@ import { getRegion } from "@lib/data/regions"
 export const metadata: Metadata = {
   title: "ShopEnGenie - Industrial Parts & Automation Components",
   description:
-    "India's leading B2B marketplace for industrial automation parts, PLCs, drives, motors, and sensors. Quality products, competitive prices, fast shipping.",
+    "Your trusted B2B marketplace for industrial automation parts, PLCs, drives, motors, and sensors. Quality products, competitive prices, fast shipping across the USA.",
 }
 
 function FeaturedProductsSkeleton() {

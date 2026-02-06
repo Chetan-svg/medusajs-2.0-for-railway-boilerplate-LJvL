@@ -4,7 +4,7 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 export const metadata: Metadata = {
   title: "Shipping & Delivery | ShopEnGenie",
   description:
-    "ShopEnGenie shipping information - same-day dispatch, pan-India delivery, tracking, and shipping rates for industrial automation parts.",
+    "ShopEnGenie shipping information - same-day dispatch, nationwide USA delivery, tracking, and shipping rates for industrial automation parts.",
 }
 
 export default function ShippingPage() {
@@ -23,8 +23,8 @@ export default function ShippingPage() {
             Shipping & <span className="text-amber-500">Delivery</span>
           </h1>
           <p className="text-slate-400 text-lg max-w-2xl">
-            Fast, reliable shipping across India. Same-day dispatch on in-stock
-            items ordered before 2 PM.
+            Fast, reliable shipping across the USA. Same-day dispatch on in-stock
+            items ordered before 2 PM EST.
           </p>
         </div>
       </div>
@@ -62,7 +62,7 @@ export default function ShippingPage() {
                   business day.
                 </p>
                 <p className="text-lg font-bold text-amber-600">FREE*</p>
-                <p className="text-xs text-slate-500">*On orders above ₹5,000</p>
+                <p className="text-xs text-slate-500">*On orders above $99</p>
               </div>
 
               <div className="border-2 border-gray-200 p-6 hover:border-amber-500 transition-colors">
@@ -87,7 +87,7 @@ export default function ShippingPage() {
                 <p className="text-slate-600 text-sm mb-4">
                   2-3 business days delivery to major cities and metros.
                 </p>
-                <p className="text-lg font-bold text-slate-700">₹199 - ₹499</p>
+                <p className="text-lg font-bold text-slate-700">$14.99 - $29.99</p>
                 <p className="text-xs text-slate-500">Based on weight/location</p>
               </div>
 
@@ -111,9 +111,9 @@ export default function ShippingPage() {
                   Standard Shipping
                 </h3>
                 <p className="text-slate-600 text-sm mb-4">
-                  5-7 business days delivery pan-India. Most economical option.
+                  5-7 business days delivery nationwide. Most economical option.
                 </p>
-                <p className="text-lg font-bold text-slate-700">₹99 - ₹299</p>
+                <p className="text-lg font-bold text-slate-700">$7.99 - $19.99</p>
                 <p className="text-xs text-slate-500">Based on weight/location</p>
               </div>
             </div>
@@ -127,16 +127,16 @@ export default function ShippingPage() {
             <div className="grid sm:grid-cols-2 gap-6">
               <div>
                 <h3 className="font-bold text-slate-900 mb-2">
-                  Orders Above ₹5,000
+                  Orders Above $99
                 </h3>
                 <p className="text-slate-600 text-sm">
-                  All orders above ₹5,000 qualify for free standard shipping
-                  across India. No code required.
+                  All orders above $99 qualify for free standard shipping
+                  across the continental US. No code required.
                 </p>
               </div>
               <div>
                 <h3 className="font-bold text-slate-900 mb-2">
-                  Bulk Orders (₹50,000+)
+                  Bulk Orders ($1,000+)
                 </h3>
                 <p className="text-slate-600 text-sm">
                   Large orders qualify for free express shipping. Contact sales
@@ -170,10 +170,10 @@ export default function ShippingPage() {
                 <tbody className="divide-y divide-slate-200">
                   <tr>
                     <td className="p-4">
-                      <span className="font-medium">Metro Cities</span>
+                      <span className="font-medium">Major Metro Areas</span>
                       <br />
                       <span className="text-slate-500 text-xs">
-                        Delhi, Mumbai, Bangalore, Chennai, Kolkata, Hyderabad
+                        New York, Los Angeles, Chicago, Houston, Phoenix, Dallas
                       </span>
                     </td>
                     <td className="p-4">3-5 days</td>
@@ -181,10 +181,10 @@ export default function ShippingPage() {
                   </tr>
                   <tr>
                     <td className="p-4">
-                      <span className="font-medium">Tier 2 Cities</span>
+                      <span className="font-medium">Secondary Markets</span>
                       <br />
                       <span className="text-slate-500 text-xs">
-                        Pune, Ahmedabad, Jaipur, Lucknow, Chandigarh, etc.
+                        Denver, Seattle, Atlanta, Detroit, Minneapolis, etc.
                       </span>
                     </td>
                     <td className="p-4">4-6 days</td>
@@ -195,7 +195,7 @@ export default function ShippingPage() {
                       <span className="font-medium">Other Locations</span>
                       <br />
                       <span className="text-slate-500 text-xs">
-                        Tier 3 cities and rural areas
+                        Smaller cities and suburban areas
                       </span>
                     </td>
                     <td className="p-4">5-7 days</td>
@@ -206,7 +206,7 @@ export default function ShippingPage() {
                       <span className="font-medium">Remote Areas</span>
                       <br />
                       <span className="text-slate-500 text-xs">
-                        Northeast, J&K, Himachal, Islands
+                        Alaska, Hawaii, Puerto Rico, Rural Areas
                       </span>
                     </td>
                     <td className="p-4">7-10 days</td>
@@ -298,10 +298,10 @@ export default function ShippingPage() {
                 Contact Support
               </LocalizedClientLink>
               <a
-                href="mailto:shipping@shopengenie.com"
+                href="mailto:chetan@shopengenie.com"
                 className="inline-flex items-center justify-center border-2 border-slate-600 text-white px-6 py-3 font-bold text-sm uppercase tracking-wider hover:border-amber-500 transition-all"
               >
-                shipping@shopengenie.com
+                chetan@shopengenie.com
               </a>
             </div>
           </section>

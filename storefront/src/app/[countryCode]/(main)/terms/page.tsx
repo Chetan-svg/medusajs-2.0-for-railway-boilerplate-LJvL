@@ -108,9 +108,9 @@ export default function TermsPage() {
             <h3 className="text-lg mt-6 mb-3">Pricing</h3>
             <ul>
               <li>
-                All prices are in Indian Rupees (INR) unless otherwise specified
+                All prices are in US Dollars (USD) unless otherwise specified
               </li>
-              <li>Prices are exclusive of GST and other applicable taxes</li>
+              <li>Prices are exclusive of applicable sales tax</li>
               <li>Shipping and handling charges are additional</li>
               <li>
                 We reserve the right to modify prices without prior notice
@@ -148,8 +148,8 @@ export default function TermsPage() {
                 approved
               </li>
               <li>
-                We accept major credit cards, debit cards, UPI, bank transfers,
-                and net banking
+                We accept major credit cards, debit cards, ACH transfers,
+                and wire transfers
               </li>
               <li>
                 For approved accounts: Net-30 payment terms may be available
@@ -160,11 +160,11 @@ export default function TermsPage() {
               </li>
             </ul>
 
-            <h3 className="text-lg mt-6 mb-3">GST and Invoicing</h3>
+            <h3 className="text-lg mt-6 mb-3">Tax and Invoicing</h3>
             <p>
-              GST-compliant invoices will be provided for all orders. Please
-              ensure your GST registration number is accurate for input tax
-              credit claims.
+              Itemized invoices will be provided for all orders. Sales tax
+              will be applied based on delivery location where applicable.
+              Tax-exempt customers must provide valid exemption certificates.
             </p>
           </section>
 
@@ -298,15 +298,15 @@ export default function TermsPage() {
               12. Governing Law and Disputes
             </h2>
             <p>
-              These Terms are governed by the laws of India. Any disputes shall
-              be subject to the exclusive jurisdiction of courts in Bengaluru,
-              Karnataka.
+              These Terms are governed by the laws of the State of Delaware, USA.
+              Any disputes shall be subject to the exclusive jurisdiction of
+              courts in the State of Delaware.
             </p>
             <p className="mt-4">
               Before initiating legal proceedings, parties agree to attempt
               resolution through good-faith negotiation. If unresolved within 30
-              days, disputes may be submitted to arbitration under the
-              Arbitration and Conciliation Act, 1996.
+              days, disputes may be submitted to binding arbitration under the
+              rules of the American Arbitration Association.
             </p>
           </section>
 
@@ -340,8 +340,8 @@ export default function TermsPage() {
             <div className="text-sm text-slate-700">
               <p>
                 <strong>Email:</strong>{" "}
-                <a href="mailto:legal@shopengenie.com" className="text-amber-600">
-                  legal@shopengenie.com
+                <a href="mailto:chetan@shopengenie.com" className="text-amber-600">
+                  chetan@shopengenie.com
                 </a>
               </p>
               <p className="mt-2">
@@ -349,8 +349,8 @@ export default function TermsPage() {
                 <br />
                 ShopEnGenie Industrial Supplies
                 <br />
-                123 Industrial Area, Phase 2<br />
-                Bengaluru, Karnataka 560058, India
+                1234 Industrial Parkway, Suite 100<br />
+                Houston, TX 77001, USA
               </p>
             </div>
           </section>

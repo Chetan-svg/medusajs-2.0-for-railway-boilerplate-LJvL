@@ -164,10 +164,10 @@ export default function TechnicalSupportPage() {
                 Send detailed questions with model numbers and specifications.
               </p>
               <a
-                href="mailto:support@shopengenie.com"
+                href="mailto:chetan@shopengenie.com"
                 className="text-amber-500 hover:text-amber-400 font-medium"
               >
-                support@shopengenie.com
+                chetan@shopengenie.com
               </a>
               <p className="text-xs text-slate-500 mt-2">
                 Response within 24 hours
@@ -195,13 +195,13 @@ export default function TechnicalSupportPage() {
                 Speak directly with our technical team.
               </p>
               <a
-                href="tel:+919876543210"
+                href="tel:+18005550199"
                 className="text-amber-600 hover:text-amber-700 font-medium"
               >
-                +91 98765 43210
+                +1 800-555-0199
               </a>
               <p className="text-xs text-slate-500 mt-2">
-                Mon-Sat, 9 AM - 6 PM IST
+                Mon-Fri, 9 AM - 6 PM EST
               </p>
             </div>
 
@@ -226,12 +226,12 @@ export default function TechnicalSupportPage() {
                 Quick questions and photo sharing.
               </p>
               <a
-                href="https://wa.me/919876543210"
+                href="https://wa.me/18005550199"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-amber-600 hover:text-amber-700 font-medium"
               >
-                +91 98765 43210
+                +1 800-555-0199
               </a>
               <p className="text-xs text-slate-500 mt-2">Available 24/7</p>
             </div>
@@ -279,7 +279,7 @@ export default function TechnicalSupportPage() {
                   <input
                     type="tel"
                     className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors"
-                    placeholder="+91 98765 43210"
+                    placeholder="+1 800-555-0199"
                   />
                 </div>
                 <div>

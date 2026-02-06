@@ -47,7 +47,7 @@ export default function CreditApplicationPage() {
                       type="text"
                       required
                       className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors"
-                      placeholder="ABC Manufacturing Pvt. Ltd."
+                      placeholder="ABC Manufacturing Inc."
                     />
                   </div>
                   <div>
@@ -69,36 +69,35 @@ export default function CreditApplicationPage() {
                       className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors bg-white"
                     >
                       <option value="">Select type</option>
-                      <option value="private-limited">Private Limited</option>
-                      <option value="public-limited">Public Limited</option>
+                      <option value="corporation">Corporation (C-Corp)</option>
+                      <option value="s-corp">S Corporation</option>
+                      <option value="llc">LLC</option>
                       <option value="partnership">Partnership</option>
-                      <option value="llp">LLP</option>
-                      <option value="proprietorship">Proprietorship</option>
+                      <option value="sole-proprietorship">Sole Proprietorship</option>
                       <option value="government">Government Entity</option>
                     </select>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-1">
-                      GST Number *
+                      EIN (Tax ID) *
                     </label>
                     <input
                       type="text"
                       required
-                      pattern="[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}"
+                      pattern="[0-9]{2}-[0-9]{7}"
                       className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors"
-                      placeholder="29XXXXX1234X1ZX"
+                      placeholder="12-3456789"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-1">
-                      PAN Number *
+                      DUNS Number
                     </label>
                     <input
                       type="text"
-                      required
-                      pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}"
+                      pattern="[0-9]{9}"
                       className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors"
-                      placeholder="XXXXX1234X"
+                      placeholder="123456789"
                     />
                   </div>
                   <div>
@@ -149,19 +148,30 @@ export default function CreditApplicationPage() {
                       type="text"
                       required
                       className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors"
-                      placeholder="Bengaluru"
+                      placeholder="Houston"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-1">
-                      PIN Code *
+                      State *
                     </label>
                     <input
                       type="text"
                       required
-                      pattern="[0-9]{6}"
                       className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors"
-                      placeholder="560058"
+                      placeholder="Texas"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">
+                      ZIP Code *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      pattern="[0-9]{5}(-[0-9]{4})?"
+                      className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors"
+                      placeholder="77001"
                     />
                   </div>
                 </div>
@@ -214,7 +224,7 @@ export default function CreditApplicationPage() {
                       type="tel"
                       required
                       className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors"
-                      placeholder="+91 98765 43210"
+                      placeholder="+1 800-555-0199"
                     />
                   </div>
                 </div>
@@ -235,12 +245,12 @@ export default function CreditApplicationPage() {
                       className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors bg-white"
                     >
                       <option value="">Select limit</option>
-                      <option value="50000">Up to ₹50,000</option>
-                      <option value="100000">₹50,001 - ₹1,00,000</option>
-                      <option value="250000">₹1,00,001 - ₹2,50,000</option>
-                      <option value="500000">₹2,50,001 - ₹5,00,000</option>
-                      <option value="1000000">₹5,00,001 - ₹10,00,000</option>
-                      <option value="1000000+">Above ₹10,00,000</option>
+                      <option value="5000">Up to $5,000</option>
+                      <option value="10000">$5,001 - $10,000</option>
+                      <option value="25000">$10,001 - $25,000</option>
+                      <option value="50000">$25,001 - $50,000</option>
+                      <option value="100000">$50,001 - $100,000</option>
+                      <option value="100000+">Above $100,000</option>
                     </select>
                   </div>
                   <div>
@@ -249,11 +259,11 @@ export default function CreditApplicationPage() {
                     </label>
                     <select className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors bg-white">
                       <option value="">Select range</option>
-                      <option value="25000">Up to ₹25,000</option>
-                      <option value="50000">₹25,001 - ₹50,000</option>
-                      <option value="100000">₹50,001 - ₹1,00,000</option>
-                      <option value="250000">₹1,00,001 - ₹2,50,000</option>
-                      <option value="250000+">Above ₹2,50,000</option>
+                      <option value="2500">Up to $2,500</option>
+                      <option value="5000">$2,501 - $5,000</option>
+                      <option value="10000">$5,001 - $10,000</option>
+                      <option value="25000">$10,001 - $25,000</option>
+                      <option value="25000+">Above $25,000</option>
                     </select>
                   </div>
                 </div>
@@ -305,7 +315,7 @@ export default function CreditApplicationPage() {
                           type="tel"
                           required
                           className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors"
-                          placeholder="+91 XXXXX XXXXX"
+                          placeholder="+1 XXX-XXX-XXXX"
                         />
                       </div>
                       <div>
@@ -356,7 +366,7 @@ export default function CreditApplicationPage() {
                           type="tel"
                           required
                           className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors"
-                          placeholder="+91 XXXXX XXXXX"
+                          placeholder="+1 XXX-XXX-XXXX"
                         />
                       </div>
                       <div>
@@ -500,8 +510,8 @@ export default function CreditApplicationPage() {
                   Eligibility Criteria
                 </h3>
                 <ul className="space-y-2 text-sm text-slate-700">
-                  <li>• Registered business entity</li>
-                  <li>• Valid GST registration</li>
+                  <li>• Registered US business entity</li>
+                  <li>• Valid EIN (Tax ID)</li>
                   <li>• Minimum 1 year in operation</li>
                   <li>• 2 verifiable trade references</li>
                   <li>• Good credit history</li>
@@ -521,10 +531,10 @@ export default function CreditApplicationPage() {
                     <strong>Email:</strong>
                     <br />
                     <a
-                      href="mailto:credit@shopengenie.com"
+                      href="mailto:chetan@shopengenie.com"
                       className="text-amber-600 hover:underline"
                     >
-                      credit@shopengenie.com
+                      chetan@shopengenie.com
                     </a>
                   </p>
                 </div>

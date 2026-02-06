@@ -62,10 +62,10 @@ export default function ContactPage() {
                     For product inquiries, bulk orders, and custom quotes
                   </p>
                   <a
-                    href="mailto:sales@shopengenie.com"
+                    href="mailto:chetan@shopengenie.com"
                     className="text-amber-600 hover:text-amber-700 font-medium"
                   >
-                    sales@shopengenie.com
+                    chetan@shopengenie.com
                   </a>
                 </div>
               </div>
@@ -101,10 +101,10 @@ export default function ContactPage() {
                     Product compatibility, installation guidance, troubleshooting
                   </p>
                   <a
-                    href="mailto:support@shopengenie.com"
+                    href="mailto:chetan@shopengenie.com"
                     className="text-amber-600 hover:text-amber-700 font-medium"
                   >
-                    support@shopengenie.com
+                    chetan@shopengenie.com
                   </a>
                 </div>
               </div>
@@ -131,13 +131,13 @@ export default function ContactPage() {
                     Phone
                   </h3>
                   <p className="text-slate-600 text-sm mb-2">
-                    Monday - Saturday, 9:00 AM - 6:00 PM IST
+                    Monday - Friday, 9:00 AM - 6:00 PM EST
                   </p>
                   <a
-                    href="tel:+919876543210"
+                    href="tel:+18005550199"
                     className="text-amber-600 hover:text-amber-700 font-medium"
                   >
-                    +91 98765 43210
+                    +1 800-555-0199
                   </a>
                 </div>
               </div>
@@ -172,10 +172,10 @@ export default function ContactPage() {
                   <p className="text-slate-600 text-sm">
                     ShopEnGenie Industrial Supplies
                     <br />
-                    123 Industrial Area, Phase 2<br />
-                    Bengaluru, Karnataka 560058
+                    1234 Industrial Parkway, Suite 100<br />
+                    Houston, TX 77001
                     <br />
-                    India
+                    USA
                   </p>
                 </div>
               </div>
@@ -278,7 +278,7 @@ export default function ContactPage() {
                     id="phone"
                     name="phone"
                     className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors"
-                    placeholder="+91 98765 43210"
+                    placeholder="+1 800-555-0199"
                   />
                 </div>
               </div>
