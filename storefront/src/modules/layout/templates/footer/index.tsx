@@ -9,150 +9,128 @@ export default async function Footer() {
   const { product_categories } = await getCategoriesList(0, 6)
 
   return (
-    <footer className="bg-slate-900 text-white w-full">
-      {/* Main Footer Content */}
-      <div className="content-container">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 py-16">
-          {/* Brand Column */}
-          <div className="lg:col-span-2">
+    <footer className="border-t border-ui-border-base w-full">
+      <div className="content-container flex flex-col w-full">
+        <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
+          <div>
             <LocalizedClientLink
               href="/"
-              className="text-2xl font-black text-white hover:text-amber-500 transition-colors uppercase tracking-tight"
+              className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
             >
               ShopEngenie
             </LocalizedClientLink>
-            <p className="mt-4 text-slate-400 text-sm leading-relaxed max-w-sm">
-              India&apos;s trusted B2B marketplace for industrial automation parts.
-              Quality components from leading brands, backed by technical expertise
-              and reliable support.
-            </p>
-            <div className="mt-6 flex items-center gap-4">
-              <div className="flex items-center gap-2 text-xs text-slate-500">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                <span>ISO 9001:2015 Certified</span>
-              </div>
-            </div>
           </div>
+          <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
+            {product_categories && product_categories?.length > 0 && (
+              <div className="flex flex-col gap-y-2">
+                <span className="txt-small-plus txt-ui-fg-base">
+                  Categories
+                </span>
+                <ul
+                  className="grid grid-cols-1 gap-2"
+                  data-testid="footer-categories"
+                >
+                  {product_categories?.slice(0, 6).map((c) => {
+                    if (c.parent_category) {
+                      return
+                    }
 
-          {/* Categories */}
-          {product_categories && product_categories?.length > 0 && (
-            <div>
-              <span className="text-xs font-bold text-amber-500 uppercase tracking-wider">
-                Categories
-              </span>
-              <ul className="mt-4 space-y-3">
-                {product_categories?.slice(0, 6).map((c) => {
-                  if (c.parent_category) return null
-                  return (
+                    const children =
+                      c.category_children?.map((child) => ({
+                        name: child.name,
+                        handle: child.handle,
+                        id: child.id,
+                      })) || null
+
+                    return (
+                      <li
+                        className="flex flex-col gap-2 text-ui-fg-subtle txt-small"
+                        key={c.id}
+                      >
+                        <LocalizedClientLink
+                          className={clx(
+                            "hover:text-ui-fg-base",
+                            children && "txt-small-plus"
+                          )}
+                          href={`/categories/${c.handle}`}
+                          data-testid="category-link"
+                        >
+                          {c.name}
+                        </LocalizedClientLink>
+                        {children && (
+                          <ul className="grid grid-cols-1 ml-3 gap-2">
+                            {children &&
+                              children.map((child) => (
+                                <li key={child.id}>
+                                  <LocalizedClientLink
+                                    className="hover:text-ui-fg-base"
+                                    href={`/categories/${child.handle}`}
+                                    data-testid="category-link"
+                                  >
+                                    {child.name}
+                                  </LocalizedClientLink>
+                                </li>
+                              ))}
+                          </ul>
+                        )}
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
+            )}
+            {collections && collections.length > 0 && (
+              <div className="flex flex-col gap-y-2">
+                <span className="txt-small-plus txt-ui-fg-base">
+                  Collections
+                </span>
+                <ul
+                  className={clx(
+                    "grid grid-cols-1 gap-2 text-ui-fg-subtle txt-small",
+                    {
+                      "grid-cols-2": (collections?.length || 0) > 3,
+                    }
+                  )}
+                >
+                  {collections?.slice(0, 6).map((c) => (
                     <li key={c.id}>
                       <LocalizedClientLink
-                        className="text-sm text-slate-400 hover:text-white transition-colors"
-                        href={`/categories/${c.handle}`}
+                        className="hover:text-ui-fg-base"
+                        href={`/collections/${c.handle}`}
                       >
-                        {c.name}
+                        {c.title}
                       </LocalizedClientLink>
                     </li>
-                  )
-                })}
+                  ))}
+                </ul>
+              </div>
+            )}
+            <div className="flex flex-col gap-y-2">
+              <span className="txt-small-plus txt-ui-fg-base">Support</span>
+              <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
+                <li>
+                  <LocalizedClientLink href="/contact" className="hover:text-ui-fg-base">
+                    Contact Us
+                  </LocalizedClientLink>
+                </li>
+                <li>
+                  <LocalizedClientLink href="/faq" className="hover:text-ui-fg-base">
+                    FAQ
+                  </LocalizedClientLink>
+                </li>
+                <li>
+                  <LocalizedClientLink href="/shipping" className="hover:text-ui-fg-base">
+                    Shipping Info
+                  </LocalizedClientLink>
+                </li>
               </ul>
             </div>
-          )}
-
-          {/* Customer Service */}
-          <div>
-            <span className="text-xs font-bold text-amber-500 uppercase tracking-wider">
-              Customer Service
-            </span>
-            <ul className="mt-4 space-y-3 text-sm text-slate-400">
-              <li>
-                <LocalizedClientLink href="/store" className="hover:text-white transition-colors">
-                  Browse Products
-                </LocalizedClientLink>
-              </li>
-              <li>
-                <LocalizedClientLink href="/account" className="hover:text-white transition-colors">
-                  My Account
-                </LocalizedClientLink>
-              </li>
-              <li>
-                <LocalizedClientLink href="/cart" className="hover:text-white transition-colors">
-                  Shopping Cart
-                </LocalizedClientLink>
-              </li>
-              <li>
-                <span className="cursor-default">Track Order</span>
-              </li>
-              <li>
-                <span className="cursor-default">Request Quote</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Policies & Info */}
-          <div>
-            <span className="text-xs font-bold text-amber-500 uppercase tracking-wider">
-              Policies & Info
-            </span>
-            <ul className="mt-4 space-y-3 text-sm text-slate-400">
-              <li>
-                <span className="cursor-default hover:text-white transition-colors">About Us</span>
-              </li>
-              <li>
-                <span className="cursor-default hover:text-white transition-colors">Return Policy</span>
-              </li>
-              <li>
-                <span className="cursor-default hover:text-white transition-colors">Warranty Info</span>
-              </li>
-              <li>
-                <span className="cursor-default hover:text-white transition-colors">Shipping & Delivery</span>
-              </li>
-              <li>
-                <span className="cursor-default hover:text-white transition-colors">Privacy Policy</span>
-              </li>
-              <li>
-                <span className="cursor-default hover:text-white transition-colors">Terms of Service</span>
-              </li>
-            </ul>
           </div>
         </div>
-
-        {/* Trust Badges */}
-        <div className="border-t border-slate-800 py-8">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
-            <div>
-              <div className="text-2xl font-black text-white">30-Day</div>
-              <div className="text-xs text-slate-500 uppercase tracking-wider mt-1">Easy Returns</div>
-            </div>
-            <div>
-              <div className="text-2xl font-black text-white">100%</div>
-              <div className="text-xs text-slate-500 uppercase tracking-wider mt-1">Genuine Parts</div>
-            </div>
-            <div>
-              <div className="text-2xl font-black text-white">24/7</div>
-              <div className="text-xs text-slate-500 uppercase tracking-wider mt-1">Technical Support</div>
-            </div>
-            <div>
-              <div className="text-2xl font-black text-white">Fast</div>
-              <div className="text-xs text-slate-500 uppercase tracking-wider mt-1">Same-Day Dispatch</div>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="border-t border-slate-800 py-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <Text className="text-xs text-slate-500">
-              © {new Date().getFullYear()} ShopEngenie. All rights reserved.
-              Industrial Automation Parts & Components.
-            </Text>
-            <div className="flex items-center gap-6 text-xs text-slate-500">
-              <span>Secure Payments</span>
-              <span>•</span>
-              <span>GST Invoicing</span>
-              <span>•</span>
-              <span>Bulk Discounts</span>
-            </div>
-          </div>
+        <div className="flex w-full mb-16 justify-between text-ui-fg-muted">
+          <Text className="txt-compact-small">
+            © {new Date().getFullYear()} ShopEngenie. All rights reserved.
+          </Text>
         </div>
       </div>
     </footer>

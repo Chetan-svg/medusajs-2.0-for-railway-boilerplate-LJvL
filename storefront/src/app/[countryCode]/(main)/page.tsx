@@ -7,8 +7,6 @@ import BrandMarquee from "@modules/home/components/brand-marquee"
 import CollectionBanner from "@modules/home/components/collection-banner"
 import CategoryGrid from "@modules/home/components/category-grid"
 import Testimonials from "@modules/home/components/testimonials"
-import ValuePropositions from "@modules/home/components/value-propositions"
-import PoliciesSection from "@modules/home/components/policies-section"
 import { getCollectionsWithProducts } from "@lib/data/collections"
 import { getCollectionsList } from "@lib/data/collections"
 import { listCategories } from "@lib/data/categories"
@@ -101,14 +99,8 @@ export default async function Home({
         </div>
       )}
 
-      {/* Why Choose ShopEngenie - Value Propositions */}
-      <ValuePropositions />
-
       {/* Customer Testimonials */}
       <Testimonials />
-
-      {/* Policies Section - Return, Warranty, Shipping */}
-      <PoliciesSection />
     </>
   )
 }
