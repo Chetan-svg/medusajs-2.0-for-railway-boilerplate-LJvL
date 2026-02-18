@@ -1,5 +1,4 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http";
-import Razorpay from "razorpay";
 
 export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
   const key_id = process.env.RAZORPAY_ID;
@@ -22,6 +21,9 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
   }
 
   try {
+    // Dynamic import to use the razorpay package from the plugin's dependencies
+    const Razorpay = (await import("razorpay")).default;
+
     const razorpay = new Razorpay({
       key_id,
       key_secret,
