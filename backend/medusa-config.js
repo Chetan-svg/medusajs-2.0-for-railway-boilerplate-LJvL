@@ -152,6 +152,7 @@ const medusaConfig = {
     }] : [])
   ],
   plugins: [
+  ...(RAZORPAY_ID && RAZORPAY_SECRET ? ['medusa-plugin-razorpay-v2'] : []),
   ...(MEILISEARCH_HOST && MEILISEARCH_ADMIN_KEY ? [{
       resolve: '@rokmohar/medusa-plugin-meilisearch',
       options: {
