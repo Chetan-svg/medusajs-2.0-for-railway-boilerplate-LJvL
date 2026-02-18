@@ -1,4 +1,4 @@
-import { loadEnv, Modules, defineConfig } from '@medusajs/utils';
+import { loadEnv, Modules, defineConfig, ContainerRegistrationKeys } from '@medusajs/utils';
 import {
   ADMIN_CORS,
   AUTH_CORS,
@@ -123,6 +123,7 @@ const medusaConfig = {
     }] : []),
     ...((STRIPE_API_KEY && STRIPE_WEBHOOK_SECRET) || (RAZORPAY_ID && RAZORPAY_SECRET) ? [{
       resolve: '@medusajs/medusa/payment',
+      dependencies: [Modules.PAYMENT, ContainerRegistrationKeys.LOGGER],
       options: {
         providers: [
           ...(STRIPE_API_KEY && STRIPE_WEBHOOK_SECRET ? [{
