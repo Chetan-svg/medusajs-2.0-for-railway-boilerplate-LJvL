@@ -10,7 +10,12 @@ import Spinner from "@modules/common/icons/spinner"
 import { placeOrder } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
 import { isManual, isPaypal, isRazorpay, isStripe } from "@lib/constants"
-import { RazorpayPaymentButton } from "./razorpay-payment-button"
+import dynamic from "next/dynamic"
+
+const RazorpayPaymentButton = dynamic(
+  () => import("./razorpay-payment-button").then((mod) => mod.RazorpayPaymentButton),
+  { ssr: false }
+)
 
 type PaymentButtonProps = {
   cart: HttpTypes.StoreCart
