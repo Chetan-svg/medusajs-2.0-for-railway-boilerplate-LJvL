@@ -9,7 +9,8 @@ import ErrorMessage from "../error-message"
 import Spinner from "@modules/common/icons/spinner"
 import { placeOrder } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
-import { isManual, isPaypal, isStripe } from "@lib/constants"
+import { isManual, isPaypal, isRazorpay, isStripe } from "@lib/constants"
+import { RazorpayPaymentButton } from "./razorpay-payment-button"
 
 type PaymentButtonProps = {
   cart: HttpTypes.StoreCart
@@ -54,6 +55,15 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
       return (
         <PayPalPaymentButton
           notReady={notReady}
+          cart={cart}
+          data-testid={dataTestId}
+        />
+      )
+    case isRazorpay(paymentSession?.provider_id):
+      return (
+        <RazorpayPaymentButton
+          notReady={notReady}
+          session={paymentSession!}
           cart={cart}
           data-testid={dataTestId}
         />

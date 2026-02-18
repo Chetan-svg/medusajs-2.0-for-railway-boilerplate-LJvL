@@ -85,6 +85,14 @@ export const STRIPE_API_KEY = process.env.STRIPE_API_KEY;
 export const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET;
 
 /**
+ * (optional) Razorpay configuration
+ */
+export const RAZORPAY_ID = process.env.RAZORPAY_ID;
+export const RAZORPAY_SECRET = process.env.RAZORPAY_SECRET;
+export const RAZORPAY_ACCOUNT = process.env.RAZORPAY_ACCOUNT;
+export const RAZORPAY_WEBHOOK_SECRET = process.env.RAZORPAY_WEBHOOK_SECRET;
+
+/**
  * (optional) Meilisearch configuration
  */
 export const MEILISEARCH_HOST = process.env.MEILISEARCH_HOST;

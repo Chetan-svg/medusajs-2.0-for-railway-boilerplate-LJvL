@@ -21,7 +21,11 @@ import {
   MINIO_SECRET_KEY,
   MINIO_BUCKET,
   MEILISEARCH_HOST,
-  MEILISEARCH_ADMIN_KEY
+  MEILISEARCH_ADMIN_KEY,
+  RAZORPAY_ID,
+  RAZORPAY_SECRET,
+  RAZORPAY_ACCOUNT,
+  RAZORPAY_WEBHOOK_SECRET
 } from 'lib/constants';
 
 loadEnv(process.env.NODE_ENV, process.cwd());
@@ -117,19 +121,32 @@ const medusaConfig = {
         ]
       }
     }] : []),
-    ...(STRIPE_API_KEY && STRIPE_WEBHOOK_SECRET ? [{
+    ...((STRIPE_API_KEY && STRIPE_WEBHOOK_SECRET) || (RAZORPAY_ID && RAZORPAY_SECRET) ? [{
       key: Modules.PAYMENT,
       resolve: '@medusajs/payment',
       options: {
         providers: [
-          {
+          ...(STRIPE_API_KEY && STRIPE_WEBHOOK_SECRET ? [{
             resolve: '@medusajs/payment-stripe',
             id: 'stripe',
             options: {
               apiKey: STRIPE_API_KEY,
               webhookSecret: STRIPE_WEBHOOK_SECRET,
             },
-          },
+          }] : []),
+          ...(RAZORPAY_ID && RAZORPAY_SECRET ? [{
+            resolve: 'medusa-plugin-razorpay-v2/providers/payment-razorpay/src',
+            id: 'razorpay',
+            options: {
+              key_id: RAZORPAY_ID,
+              key_secret: RAZORPAY_SECRET,
+              razorpay_account: RAZORPAY_ACCOUNT,
+              automatic_expiry_period: 30,
+              manual_expiry_period: 20,
+              refund_speed: 'normal',
+              webhook_secret: RAZORPAY_WEBHOOK_SECRET,
+            },
+          }] : []),
         ],
       },
     }] : [])
