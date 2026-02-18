@@ -122,12 +122,11 @@ const medusaConfig = {
       }
     }] : []),
     ...((STRIPE_API_KEY && STRIPE_WEBHOOK_SECRET) || (RAZORPAY_ID && RAZORPAY_SECRET) ? [{
-      key: Modules.PAYMENT,
-      resolve: '@medusajs/payment',
+      resolve: '@medusajs/medusa/payment',
       options: {
         providers: [
           ...(STRIPE_API_KEY && STRIPE_WEBHOOK_SECRET ? [{
-            resolve: '@medusajs/payment-stripe',
+            resolve: '@medusajs/medusa/payment-stripe',
             id: 'stripe',
             options: {
               apiKey: STRIPE_API_KEY,
