@@ -20,7 +20,7 @@ export default async function orderPlacedHandler({
       template: EmailTemplates.ORDER_PLACED,
       data: {
         emailOptions: {
-          replyTo: 'info@example.com',
+          replyTo: process.env.RESEND_FROM_EMAIL || process.env.RESEND_FROM || 'noreply@example.com',
           subject: 'Your order has been placed'
         },
         order,
