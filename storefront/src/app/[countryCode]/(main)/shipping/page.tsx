@@ -4,7 +4,7 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 export const metadata: Metadata = {
   title: "Shipping & Delivery | ShopEnGenie",
   description:
-    "ShopEnGenie shipping information - same-day dispatch, nationwide USA delivery, tracking, and shipping rates for industrial automation parts.",
+    "ShopEnGenie shipping information - nationwide USA delivery, tracking, and shipping rates for industrial automation parts.",
 }
 
 export default function ShippingPage() {
@@ -23,8 +23,8 @@ export default function ShippingPage() {
             Shipping & <span className="text-amber-500">Delivery</span>
           </h1>
           <p className="text-slate-400 text-lg max-w-2xl">
-            Fast, reliable shipping across the USA. Same-day dispatch on in-stock
-            items ordered before 2 PM EST.
+            Reliable shipping across the USA. Estimated delivery within 20
+            business days.
           </p>
         </div>
       </div>
@@ -37,64 +37,11 @@ export default function ShippingPage() {
               Shipping Options
             </h2>
 
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-1 gap-6 max-w-lg">
               <div className="border-2 border-gray-200 p-6 hover:border-amber-500 transition-colors">
                 <div className="w-12 h-12 bg-amber-500 flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-slate-900"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 10V3L4 14h7v7l9-11h-7z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="font-bold text-slate-900 uppercase tracking-wide mb-2">
-                  Same-Day Dispatch
-                </h3>
-                <p className="text-slate-600 text-sm mb-4">
-                  Orders placed before 2 PM on in-stock items ship the same
-                  business day.
-                </p>
-                <p className="text-lg font-bold text-amber-600">FREE*</p>
-                <p className="text-xs text-slate-500">*On orders above $99</p>
-              </div>
-
-              <div className="border-2 border-gray-200 p-6 hover:border-amber-500 transition-colors">
-                <div className="w-12 h-12 bg-slate-200 flex items-center justify-center mb-4">
-                  <svg
-                    className="w-6 h-6 text-slate-700"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
-                    />
-                  </svg>
-                </div>
-                <h3 className="font-bold text-slate-900 uppercase tracking-wide mb-2">
-                  Express Delivery
-                </h3>
-                <p className="text-slate-600 text-sm mb-4">
-                  2-3 business days delivery to major cities and metros.
-                </p>
-                <p className="text-lg font-bold text-slate-700">$14.99 - $29.99</p>
-                <p className="text-xs text-slate-500">Based on weight/location</p>
-              </div>
-
-              <div className="border-2 border-gray-200 p-6 hover:border-amber-500 transition-colors">
-                <div className="w-12 h-12 bg-slate-200 flex items-center justify-center mb-4">
-                  <svg
-                    className="w-6 h-6 text-slate-700"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -111,10 +58,10 @@ export default function ShippingPage() {
                   Standard Shipping
                 </h3>
                 <p className="text-slate-600 text-sm mb-4">
-                  5-7 business days delivery nationwide. Most economical option.
+                  Estimated delivery within 20 business days nationwide.
                 </p>
-                <p className="text-lg font-bold text-slate-700">$7.99 - $19.99</p>
-                <p className="text-xs text-slate-500">Based on weight/location</p>
+                <p className="text-lg font-bold text-amber-600">FREE*</p>
+                <p className="text-xs text-slate-500">*On orders above $99</p>
               </div>
             </div>
           </section>
@@ -160,57 +107,20 @@ export default function ShippingPage() {
                       Region
                     </th>
                     <th className="text-left p-4 font-bold text-slate-900">
-                      Standard
-                    </th>
-                    <th className="text-left p-4 font-bold text-slate-900">
-                      Express
+                      Estimated Delivery
                     </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-200">
                   <tr>
                     <td className="p-4">
-                      <span className="font-medium">Major Metro Areas</span>
+                      <span className="font-medium">All US Locations</span>
                       <br />
                       <span className="text-slate-500 text-xs">
-                        New York, Los Angeles, Chicago, Houston, Phoenix, Dallas
+                        Continental US, Alaska, Hawaii, Puerto Rico
                       </span>
                     </td>
-                    <td className="p-4">3-5 days</td>
-                    <td className="p-4 text-amber-600 font-medium">1-2 days</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4">
-                      <span className="font-medium">Secondary Markets</span>
-                      <br />
-                      <span className="text-slate-500 text-xs">
-                        Denver, Seattle, Atlanta, Detroit, Minneapolis, etc.
-                      </span>
-                    </td>
-                    <td className="p-4">4-6 days</td>
-                    <td className="p-4 text-amber-600 font-medium">2-3 days</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4">
-                      <span className="font-medium">Other Locations</span>
-                      <br />
-                      <span className="text-slate-500 text-xs">
-                        Smaller cities and suburban areas
-                      </span>
-                    </td>
-                    <td className="p-4">5-7 days</td>
-                    <td className="p-4 text-amber-600 font-medium">3-4 days</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4">
-                      <span className="font-medium">Remote Areas</span>
-                      <br />
-                      <span className="text-slate-500 text-xs">
-                        Alaska, Hawaii, Puerto Rico, Rural Areas
-                      </span>
-                    </td>
-                    <td className="p-4">7-10 days</td>
-                    <td className="p-4 text-amber-600 font-medium">4-5 days</td>
+                    <td className="p-4 font-medium">Up to 20 business days</td>
                   </tr>
                 </tbody>
               </table>

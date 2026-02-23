@@ -29,12 +29,10 @@ export default function ContactPage() {
       </div>
 
       <div className="content-container py-16 sm:py-20">
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <div>
-            <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight mb-8">
-              How to Reach Us
-            </h2>
+        <div>
+          <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight mb-8">
+            How to Reach Us
+          </h2>
 
             <div className="space-y-8">
               {/* Sales Inquiries */}
@@ -174,135 +172,6 @@ export default function ContactPage() {
                 </li>
               </ul>
             </div>
-          </div>
-
-          {/* Contact Form */}
-          <div className="bg-slate-50 p-8 border-2 border-gray-200">
-            <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight mb-6">
-              Send Us a Message
-            </h2>
-            <form className="space-y-6">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-slate-700 mb-1"
-                  >
-                    Your Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors"
-                    placeholder="John Doe"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="company"
-                    className="block text-sm font-medium text-slate-700 mb-1"
-                  >
-                    Company Name
-                  </label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors"
-                    placeholder="ABC Manufacturing Ltd."
-                  />
-                </div>
-              </div>
-
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-slate-700 mb-1"
-                  >
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors"
-                    placeholder="john@company.com"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="phone"
-                    className="block text-sm font-medium text-slate-700 mb-1"
-                  >
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors"
-                    placeholder="Your phone number"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="subject"
-                  className="block text-sm font-medium text-slate-700 mb-1"
-                >
-                  Subject *
-                </label>
-                <select
-                  id="subject"
-                  name="subject"
-                  required
-                  className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors bg-white"
-                >
-                  <option value="">Select a subject</option>
-                  <option value="quote">Request for Quote</option>
-                  <option value="product">Product Inquiry</option>
-                  <option value="technical">Technical Support</option>
-                  <option value="order">Order Status</option>
-                  <option value="return">Returns & Refunds</option>
-                  <option value="partnership">Partnership Inquiry</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-slate-700 mb-1"
-                >
-                  Message *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  required
-                  className="w-full px-4 py-3 border-2 border-gray-200 focus:border-amber-500 focus:outline-none transition-colors resize-none"
-                  placeholder="Please describe your inquiry in detail..."
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-amber-500 text-slate-900 px-8 py-4 font-black text-sm uppercase tracking-wider hover:bg-amber-400 transition-all"
-              >
-                Send Message
-              </button>
-
-              <p className="text-xs text-slate-500 text-center">
-                We typically respond within 24 business hours.
-              </p>
-            </form>
-          </div>
         </div>
       </div>
     </div>

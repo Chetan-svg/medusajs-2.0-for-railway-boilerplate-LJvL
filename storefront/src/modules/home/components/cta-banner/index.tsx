@@ -87,7 +87,7 @@ const CTABanner = () => {
                 },
                 {
                   title: "Priority Shipping",
-                  description: "Same-day dispatch on in-stock items",
+                  description: "Delivery within 20 business days",
                 },
                 {
                   title: "Technical Support",

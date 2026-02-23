@@ -37,8 +37,8 @@ const TrustBadges = () => {
               ),
             },
             {
-              title: "Same Day",
-              subtitle: "Dispatch",
+              title: "Nationwide",
+              subtitle: "Shipping",
               icon: (
                 <path
                   strokeLinecap="round"

@@ -119,7 +119,7 @@ export default function CollectionBanner({
               {/* Feature bullets */}
               <div className="space-y-4">
                 {[
-                  "Same-day dispatch on in-stock items",
+                  "Delivery within 20 business days",
                   "Genuine OEM parts with full warranty",
                   "Technical support from automation experts",
                   "Competitive pricing with bulk discounts",

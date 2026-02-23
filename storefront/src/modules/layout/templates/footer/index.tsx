@@ -18,8 +18,8 @@ export default async function Footer() {
               <svg className="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
-              <span className="text-sm font-semibold text-white">Same-Day Dispatch</span>
-              <span className="text-xs text-slate-400">On in-stock items</span>
+              <span className="text-sm font-semibold text-white">Nationwide Shipping</span>
+              <span className="text-xs text-slate-400">Within 20 business days</span>
             </div>
             <div className="flex flex-col items-center gap-2">
               <svg className="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">

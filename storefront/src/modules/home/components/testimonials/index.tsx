@@ -17,7 +17,7 @@ const testimonials = [
     name: "Michael Chen",
     company: "Pacific Coast Manufacturing, CA",
     rating: 5,
-    text: "We run multiple manufacturing units across the country. ShopEnGenie's same-day dispatch has prevented costly downtime more times than I can count. Genuine parts with full warranty.",
+    text: "We run multiple manufacturing units across the country. ShopEnGenie's reliable shipping and genuine parts with full warranty have been invaluable for keeping our operations running.",
     verified: true,
   },
   {

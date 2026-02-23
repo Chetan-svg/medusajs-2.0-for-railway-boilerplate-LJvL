@@ -52,9 +52,9 @@ export default function AboutPage() {
               OEM suppliers.
             </p>
             <p className="text-slate-600 leading-relaxed">
-              Our commitment: genuine parts, competitive pricing, same-day
-              dispatch, and technical support from automation experts who
-              understand your challenges.
+              Our commitment: genuine parts, competitive pricing, reliable
+              nationwide shipping, and technical support from automation experts
+              who understand your challenges.
             </p>
           </div>
           <div className="bg-slate-100 p-8 border-l-4 border-amber-500">
@@ -119,9 +119,9 @@ export default function AboutPage() {
                 ),
               },
               {
-                title: "Same-Day Dispatch",
+                title: "Nationwide Shipping",
                 description:
-                  "Orders placed before 2 PM EST on in-stock items ship the same day. Nationwide delivery with tracking.",
+                  "Estimated delivery within 20 business days. Nationwide delivery with tracking on all orders.",
                 icon: (
                   <path
                     strokeLinecap="round"

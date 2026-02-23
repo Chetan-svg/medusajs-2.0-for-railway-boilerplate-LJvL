@@ -59,7 +59,7 @@ const faqs = [
     questions: [
       {
         q: "What are your shipping options?",
-        a: "We offer standard shipping (5-7 business days), express shipping (2-3 business days), and same-day dispatch for in-stock items ordered before 2 PM. Shipping costs vary by location and order value.",
+        a: "We offer standard shipping with an estimated delivery time of up to 20 business days. Shipping costs vary by location and order value. Orders above $99 qualify for free shipping.",
       },
       {
         q: "Do you ship nationwide?",
