@@ -90,11 +90,12 @@ export const getProductsList = cache(async function ({
 })
 
 /**
- * This will fetch 100 products to the Next.js cache and sort them based on the sortBy parameter.
- * It will then return the paginated products based on the page and limit parameters.
+ * Fetches a single page of products using server-side pagination.
+ * Sorting by created_at is handled by the API; price sorting is applied
+ * client-side within the returned page.
  */
 export const getProductsListWithSort = cache(async function ({
-  page = 0,
+  page = 1,
   queryParams,
   sortBy = "created_at",
   countryCode,
@@ -110,28 +111,33 @@ export const getProductsListWithSort = cache(async function ({
 }> {
   const limit = queryParams?.limit || 12
 
+  const apiQueryParams: HttpTypes.FindParams & HttpTypes.StoreProductParams = {
+    ...queryParams,
+    limit,
+  }
+
+  // Use API-level sorting for created_at
+  if (sortBy === "created_at") {
+    apiQueryParams.order = "-created_at"
+  }
+
   const {
     response: { products, count },
   } = await getProductsList({
-    pageParam: 0,
-    queryParams: {
-      ...queryParams,
-      limit: 100,
-    },
+    pageParam: page,
+    queryParams: apiQueryParams,
     countryCode,
   })
 
+  // Apply client-side price sorting within this page
   const sortedProducts = sortProducts(products, sortBy)
 
   const pageParam = (page - 1) * limit
-
   const nextPage = count > pageParam + limit ? pageParam + limit : null
-
-  const paginatedProducts = sortedProducts.slice(pageParam, pageParam + limit)
 
   return {
     response: {
-      products: paginatedProducts,
+      products: sortedProducts,
       count,
     },
     nextPage,
