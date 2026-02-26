@@ -28,12 +28,25 @@ export interface OrderPlacedTemplateProps {
 export const isOrderPlacedTemplateData = (data: any): data is OrderPlacedTemplateProps =>
   typeof data.order === 'object'
 
+// MedusaJS 2.0 returns BigNumber objects like { value: "4320", precision: 20 }
+// instead of plain numbers. This safely extracts the numeric value.
+function toNumber(val: any): number {
+  if (val == null) return 0
+  if (typeof val === 'number') return val
+  if (typeof val === 'string') return parseFloat(val) || 0
+  if (typeof val === 'object' && val.value != null) return toNumber(val.value)
+  return 0
+}
+
+function formatCurrency(cents: any, currencyCode: string): string {
+  const amount = toNumber(cents)
+  return `${(amount / 100).toFixed(2)} ${(currencyCode || 'USD').toUpperCase()}`
+}
+
 function formatTotal(order: OrderPlacedTemplateProps['order']): string {
   const rawValue = order.summary?.raw_current_order_total?.value
   if (rawValue == null) return 'N/A'
-  const cents = typeof rawValue === 'string' ? parseInt(rawValue, 10) : rawValue
-  const currency = (order.currency_code || 'USD').toUpperCase()
-  return `${(cents / 100).toFixed(2)} ${currency}`
+  return formatCurrency(rawValue, order.currency_code)
 }
 
 export const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> = ({
@@ -106,7 +119,7 @@ export const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> = ({
               {item.product_title} — {item.title}
             </Text>
             <Text style={{ margin: '0', color: '#666', fontSize: '14px' }}>
-              Qty: {item.quantity} × {((item.unit_price || 0) / 100).toFixed(2)} {(order.currency_code || 'USD').toUpperCase()}
+              Qty: {toNumber(item.quantity)} × {formatCurrency(item.unit_price, order.currency_code)}
             </Text>
           </div>
         ))}
