@@ -1,7 +1,7 @@
 import { Logger, NotificationTypes } from '@medusajs/framework/types'
 import { AbstractNotificationProviderService, MedusaError } from '@medusajs/framework/utils'
 import { Resend, CreateEmailOptions } from 'resend'
-import { ReactNode } from 'react'
+import { render } from '@react-email/render'
 import { generateEmailTemplate } from '../templates'
 
 type InjectedDependencies = {
@@ -23,14 +23,11 @@ type NotificationEmailOptions = Omit<
   'to' | 'from' | 'react' | 'html' | 'attachments'
 >
 
-/**
- * Service to handle email notifications using the Resend API.
- */
 export class ResendNotificationService extends AbstractNotificationProviderService {
   static identifier = "RESEND_NOTIFICATION_SERVICE"
-  protected config_: ResendServiceConfig // Configuration for Resend API
-  protected logger_: Logger // Logger for error and event logging
-  protected resend: Resend // Instance of the Resend API client
+  protected config_: ResendServiceConfig
+  protected logger_: Logger
+  protected resend: Resend
 
   constructor({ logger }: InjectedDependencies, options: ResendNotificationServiceOptions) {
     super()
@@ -52,35 +49,48 @@ export class ResendNotificationService extends AbstractNotificationProviderServi
       throw new MedusaError(MedusaError.Types.INVALID_DATA, `SMS notification not supported`)
     }
 
-    // Generate the email content using the template
-    let emailContent: ReactNode
+    // Step 1: Generate the React element from template
+    this.logger_.info(`[resend] Generating template "${notification.template}" for ${notification.to}`)
+    let emailElement: React.ReactElement
 
     try {
-      emailContent = generateEmailTemplate(notification.template, notification.data)
-    } catch (error) {
-      if (error instanceof MedusaError) {
-        throw error // Re-throw MedusaError for invalid template data
-      }
+      emailElement = generateEmailTemplate(notification.template, notification.data) as React.ReactElement
+    } catch (error: any) {
+      this.logger_.error(`[resend] Template generation failed: ${error.message}`)
+      if (error instanceof MedusaError) throw error
       throw new MedusaError(
         MedusaError.Types.UNEXPECTED_STATE,
-        `Failed to generate email content for template: ${notification.template}`
+        `Failed to generate email template "${notification.template}": ${error.message}`
       )
     }
 
-    const emailOptions = notification.data.emailOptions as NotificationEmailOptions
+    // Step 2: Render React element to HTML string explicitly
+    let html: string
+    try {
+      html = await render(emailElement)
+      this.logger_.info(`[resend] Template rendered to HTML (${html.length} chars)`)
+    } catch (error: any) {
+      this.logger_.error(`[resend] HTML rendering failed: ${error.message}`)
+      throw new MedusaError(
+        MedusaError.Types.UNEXPECTED_STATE,
+        `Failed to render email template "${notification.template}" to HTML: ${error.message}`
+      )
+    }
 
-    // Compose the message body to send via API to Resend
+    const emailOptions = notification.data?.emailOptions as NotificationEmailOptions | undefined
+
+    // Step 3: Send via Resend API using html (not react prop)
     const message: CreateEmailOptions = {
       to: notification.to,
       from: notification.from?.trim() ?? this.config_.from,
-      react: emailContent,
-      subject: emailOptions.subject ?? 'You have a new notification',
-      headers: emailOptions.headers,
-      replyTo: emailOptions.replyTo,
-      cc: emailOptions.cc,
-      bcc: emailOptions.bcc,
-      tags: emailOptions.tags,
-      text: emailOptions.text,
+      html,
+      subject: emailOptions?.subject ?? 'You have a new notification',
+      headers: emailOptions?.headers,
+      replyTo: emailOptions?.replyTo,
+      cc: emailOptions?.cc,
+      bcc: emailOptions?.bcc,
+      tags: emailOptions?.tags,
+      text: emailOptions?.text,
       attachments: Array.isArray(notification.attachments)
         ? notification.attachments.map((attachment) => ({
             content: attachment.content,
@@ -90,22 +100,26 @@ export class ResendNotificationService extends AbstractNotificationProviderServi
             id: attachment.id ?? undefined
           }))
         : undefined,
-      scheduledAt: emailOptions.scheduledAt
+      scheduledAt: emailOptions?.scheduledAt
     }
 
-    // Send the email via Resend
     try {
-      await this.resend.emails.send(message)
-      this.logger_.log(
-        `Successfully sent "${notification.template}" email to ${notification.to} via Resend`
-      )
-      return {} // Return an empty object on success
-    } catch (error) {
-      const errorCode = error.code
-      const responseError = error.response?.body?.errors?.[0]
+      const { data, error } = await this.resend.emails.send(message)
+      if (error) {
+        this.logger_.error(`[resend] Resend API error: ${JSON.stringify(error)}`)
+        throw new MedusaError(
+          MedusaError.Types.UNEXPECTED_STATE,
+          `Resend API rejected email to ${notification.to}: ${error.message}`
+        )
+      }
+      this.logger_.info(`[resend] Email sent to ${notification.to} (id: ${data?.id})`)
+      return {}
+    } catch (error: any) {
+      if (error instanceof MedusaError) throw error
+      this.logger_.error(`[resend] Send failed: ${error.message}`)
       throw new MedusaError(
         MedusaError.Types.UNEXPECTED_STATE,
-        `Failed to send "${notification.template}" email to ${notification.to} via Resend: ${errorCode} - ${responseError?.message ?? 'unknown error'}`
+        `Failed to send "${notification.template}" email to ${notification.to}: ${error.message}`
       )
     }
   }
