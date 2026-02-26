@@ -12,17 +12,24 @@ export default async function fixShippingProfiles({ container }: ExecArgs) {
 
   logger.info("=== Fix Product Shipping Profiles ===");
 
-  // 1. Get default shipping profile
-  const profiles = await fulfillmentService.listShippingProfiles({
-    type: "default",
-  });
-  if (!profiles.length) {
-    logger.info("ERROR: No default shipping profile found!");
+  // 1. Get shipping profile - try all approaches
+  let allProfiles = await fulfillmentService.listShippingProfiles({});
+  logger.info(`Found ${allProfiles.length} shipping profiles:`);
+  for (const p of allProfiles) {
+    logger.info(`  - ${p.name} (${p.id}) type=${p.type}`);
+  }
+
+  // Prefer "default" type, then "Default Shipping Profile" by name, then first
+  let defaultProfile = allProfiles.find((p: any) => p.type === "default")
+    || allProfiles.find((p: any) => p.name === "Default Shipping Profile")
+    || allProfiles[0];
+
+  if (!defaultProfile) {
+    logger.info("ERROR: No shipping profiles found at all!");
     return;
   }
-  const defaultProfile = profiles[0];
   logger.info(
-    `Default shipping profile: ${defaultProfile.name} (${defaultProfile.id})`
+    `Using shipping profile: ${defaultProfile.name} (${defaultProfile.id})`
   );
 
   // 2. Clear any bad manual SQL inserts
