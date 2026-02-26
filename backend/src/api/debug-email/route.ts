@@ -40,7 +40,7 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
 
   // 3. Test template rendering with MOCK data (known good shape)
   try {
-    const { generateEmailTemplate } = await import("../../modules/email-notifications/templates")
+    const { generateEmailTemplate } = await import("../../modules/email-notifications/templates/index.js")
     const mockData = {
       order: {
         id: "test-order-id",
@@ -104,7 +104,7 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
 
       // Now try rendering the template with real data
       try {
-        const { generateEmailTemplate } = await import("../../modules/email-notifications/templates")
+        const { generateEmailTemplate } = await import("../../modules/email-notifications/templates/index.js")
         const realData = {
           order,
           shippingAddress: order.shipping_address || {},
@@ -127,7 +127,7 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
   try {
     const { Resend } = await import("resend")
     const resend = new Resend(process.env.RESEND_API_KEY)
-    const { generateEmailTemplate } = await import("../../modules/email-notifications/templates")
+    const { generateEmailTemplate } = await import("../../modules/email-notifications/templates/index.js")
     const mockData = {
       order: {
         id: "test", display_id: "ORD-TEST", created_at: new Date().toISOString(),
