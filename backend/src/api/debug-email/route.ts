@@ -12,57 +12,51 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
     RESEND_FROM: process.env.RESEND_FROM || "NOT SET",
   }
 
-  // 2. Check if notification module is loaded
-  try {
-    const notificationService = req.scope.resolve(Modules.NOTIFICATION)
-    diagnostics.notification_module = {
-      loaded: true,
-      type: typeof notificationService,
-      methods: Object.getOwnPropertyNames(Object.getPrototypeOf(notificationService)).filter(m => m !== 'constructor'),
-    }
-  } catch (error: any) {
-    diagnostics.notification_module = {
-      loaded: false,
-      error: error.message,
-    }
-  }
-
-  // 3. Try to list notification providers
+  // 2. Check notification providers in DB
   try {
     const pgConnection = req.scope.resolve(ContainerRegistrationKeys.PG_CONNECTION)
-    const providers = await pgConnection.raw(
-      `SELECT * FROM notification_provider`
-    )
+    const providers = await pgConnection.raw(`SELECT * FROM notification_provider`)
     diagnostics.notification_providers = providers.rows || providers
   } catch (error: any) {
     diagnostics.notification_providers_error = error.message
   }
 
-  // 4. Check recent notifications
+  // 3. Check recent notifications with status
   try {
     const pgConnection = req.scope.resolve(ContainerRegistrationKeys.PG_CONNECTION)
     const notifications = await pgConnection.raw(
-      `SELECT id, to_address, channel, template, provider_id, created_at
-       FROM notification ORDER BY created_at DESC LIMIT 5`
+      `SELECT id, "to", channel, template, provider_id, status, created_at
+       FROM notification WHERE template = 'order-placed' ORDER BY created_at DESC LIMIT 5`
     )
-    diagnostics.recent_notifications = notifications.rows || notifications
+    diagnostics.recent_email_notifications = notifications.rows || notifications
   } catch (error: any) {
     diagnostics.recent_notifications_error = error.message
   }
 
-  // 5. Check recent orders
+  // 4. Direct Resend API test (bypasses template system entirely)
   try {
-    const pgConnection = req.scope.resolve(ContainerRegistrationKeys.PG_CONNECTION)
-    const orders = await pgConnection.raw(
-      `SELECT id, display_id, email, created_at
-       FROM "order" ORDER BY created_at DESC LIMIT 3`
-    )
-    diagnostics.recent_orders = orders.rows || orders
+    const { Resend } = await import("resend")
+    const resend = new Resend(process.env.RESEND_API_KEY)
+    const { data, error } = await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
+      to: ["chetansinghbhadauria708@gmail.com"],
+      subject: "Resend Test from MedusaJS",
+      html: "<h1>Test Email</h1><p>If you see this, Resend is working correctly.</p>",
+    })
+    if (error) {
+      diagnostics.direct_resend_test = { success: false, error }
+    } else {
+      diagnostics.direct_resend_test = { success: true, id: data?.id }
+    }
   } catch (error: any) {
-    diagnostics.recent_orders_error = error.message
+    diagnostics.direct_resend_test = {
+      success: false,
+      error: error.message,
+      code: error.code,
+      statusCode: error.statusCode,
+    }
   }
 
   logger.info(`[debug-email] Diagnostics: ${JSON.stringify(diagnostics, null, 2)}`)
-
   res.json(diagnostics)
 }
