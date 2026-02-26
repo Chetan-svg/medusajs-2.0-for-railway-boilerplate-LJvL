@@ -29,24 +29,32 @@ export const isOrderPlacedTemplateData = (data: any): data is OrderPlacedTemplat
   typeof data.order === 'object'
 
 // MedusaJS 2.0 returns BigNumber objects like { value: "4320", precision: 20 }
-// instead of plain numbers. This safely extracts the numeric value.
+// or BigNumber class instances. Values are in BASE currency (dollars, not cents).
 function toNumber(val: any): number {
   if (val == null) return 0
   if (typeof val === 'number') return val
   if (typeof val === 'string') return parseFloat(val) || 0
-  if (typeof val === 'object' && val.value != null) return toNumber(val.value)
+  if (typeof val === 'object') {
+    if (val.value != null) return toNumber(val.value)
+    if (typeof val.toNumber === 'function') return val.toNumber()
+    if (typeof val.toString === 'function') {
+      const str = val.toString()
+      if (str !== '[object Object]') return parseFloat(str) || 0
+    }
+  }
   return 0
 }
 
-function formatCurrency(cents: any, currencyCode: string): string {
-  const amount = toNumber(cents)
-  return `${(amount / 100).toFixed(2)} ${(currencyCode || 'USD').toUpperCase()}`
+function formatMoney(amount: any, currencyCode: string): string {
+  const num = toNumber(amount)
+  const currency = (currencyCode || 'USD').toUpperCase()
+  return `${num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${currency}`
 }
 
 function formatTotal(order: OrderPlacedTemplateProps['order']): string {
   const rawValue = order.summary?.raw_current_order_total?.value
   if (rawValue == null) return 'N/A'
-  return formatCurrency(rawValue, order.currency_code)
+  return formatMoney(rawValue, order.currency_code)
 }
 
 export const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> = ({
@@ -110,19 +118,28 @@ export const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> = ({
           Order Items
         </Text>
 
-        {(order.items || []).map((item) => (
-          <div key={item.id} style={{
-            padding: '8px 0',
-            borderBottom: '1px solid #eaeaea',
-          }}>
-            <Text style={{ margin: '0 0 2px', fontWeight: '500' }}>
-              {item.product_title} — {item.title}
-            </Text>
-            <Text style={{ margin: '0', color: '#666', fontSize: '14px' }}>
-              Qty: {toNumber(item.quantity)} × {formatCurrency(item.unit_price, order.currency_code)}
-            </Text>
-          </div>
-        ))}
+        {(order.items || []).map((item: any) => {
+          // MedusaJS 2.0: items may have a 'detail' sub-object with line item data
+          const detail = item.detail || item
+          const qty = toNumber(item.quantity || detail.quantity)
+          const price = toNumber(item.unit_price || detail.unit_price || item.raw_unit_price || detail.raw_unit_price)
+          const title = detail.product_title || detail.title || item.product_title || item.title || 'Item'
+          const variant = detail.variant_title || detail.title || item.variant_title || item.title || ''
+
+          return (
+            <div key={item.id} style={{
+              padding: '8px 0',
+              borderBottom: '1px solid #eaeaea',
+            }}>
+              <Text style={{ margin: '0 0 2px', fontWeight: '500' }}>
+                {title}{variant && variant !== title ? ` — ${variant}` : ''}
+              </Text>
+              <Text style={{ margin: '0', color: '#666', fontSize: '14px' }}>
+                Qty: {qty || 1} × {formatMoney(price, order.currency_code)}
+              </Text>
+            </div>
+          )
+        })}
       </Section>
     </Base>
   )

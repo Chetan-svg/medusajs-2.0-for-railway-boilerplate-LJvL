@@ -85,21 +85,19 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
     })
     const order = orders?.[0]
     if (order) {
-      // Show the data shape that the template will receive
+      // Show the FULL data shape including item details
+      const firstItem = order.items?.[0]
       diagnostics.real_order_data_shape = {
         has_order: !!order,
         has_email: !!order.email,
         has_display_id: !!order.display_id,
         has_items: Array.isArray(order.items),
         items_count: order.items?.length,
+        first_item_keys: firstItem ? Object.keys(firstItem) : "N/A",
+        first_item_dump: firstItem ? JSON.parse(JSON.stringify(firstItem)) : "N/A",
         has_summary: !!order.summary,
-        summary_keys: order.summary ? Object.keys(order.summary) : "N/A",
-        has_raw_current_order_total: !!order.summary?.raw_current_order_total,
-        raw_total_type: typeof order.summary?.raw_current_order_total,
         raw_total_value: order.summary?.raw_current_order_total,
         has_shipping_address: !!order.shipping_address,
-        shipping_address_type: typeof order.shipping_address,
-        shipping_address_keys: order.shipping_address ? Object.keys(order.shipping_address) : "N/A",
       }
 
       // Now try rendering the template with real data
