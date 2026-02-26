@@ -1,27 +1,48 @@
 import { Text, Section, Hr } from '@react-email/components'
 import * as React from 'react'
 import { Base } from './base'
-import { OrderDTO, OrderAddressDTO } from '@medusajs/framework/types'
 
 export const ORDER_PLACED = 'order-placed'
 
-interface OrderPlacedPreviewProps {
-  order: OrderDTO & { display_id: string; summary: { raw_current_order_total: { value: number } } }
-  shippingAddress: OrderAddressDTO
-}
-
 export interface OrderPlacedTemplateProps {
-  order: OrderDTO & { display_id: string; summary: { raw_current_order_total: { value: number } } }
-  shippingAddress: OrderAddressDTO
+  order: {
+    display_id: string
+    email: string
+    currency_code: string
+    created_at: string
+    items: Array<{ id: string; title: string; product_title: string; quantity: number; unit_price: number }>
+    summary?: { raw_current_order_total?: { value: string | number } }
+  }
+  shippingAddress?: {
+    first_name?: string
+    last_name?: string
+    address_1?: string
+    city?: string
+    province?: string
+    postal_code?: string
+    country_code?: string
+  }
   preview?: string
 }
 
 export const isOrderPlacedTemplateData = (data: any): data is OrderPlacedTemplateProps =>
-  typeof data.order === 'object' && typeof data.shippingAddress === 'object'
+  typeof data.order === 'object'
 
-export const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> & {
-  PreviewProps: OrderPlacedPreviewProps
-} = ({ order, shippingAddress, preview = 'Your order has been placed!' }) => {
+function formatTotal(order: OrderPlacedTemplateProps['order']): string {
+  const rawValue = order.summary?.raw_current_order_total?.value
+  if (rawValue == null) return 'N/A'
+  const cents = typeof rawValue === 'string' ? parseInt(rawValue, 10) : rawValue
+  const currency = (order.currency_code || 'USD').toUpperCase()
+  return `${(cents / 100).toFixed(2)} ${currency}`
+}
+
+export const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> = ({
+  order,
+  shippingAddress,
+  preview = 'Your order has been placed!',
+}) => {
+  const hasAddress = shippingAddress && (shippingAddress.first_name || shippingAddress.address_1)
+
   return (
     <Base preview={preview}>
       <Section>
@@ -30,7 +51,9 @@ export const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> & {
         </Text>
 
         <Text style={{ margin: '0 0 15px' }}>
-          Dear {shippingAddress.first_name} {shippingAddress.last_name},
+          {hasAddress
+            ? `Dear ${shippingAddress!.first_name || ''} ${shippingAddress!.last_name || ''},`
+            : 'Dear Customer,'}
         </Text>
 
         <Text style={{ margin: '0 0 30px' }}>
@@ -41,29 +64,32 @@ export const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> & {
           Order Summary
         </Text>
         <Text style={{ margin: '0 0 5px' }}>
-          Order ID: {order.display_id}
+          Order ID: #{order.display_id}
         </Text>
         <Text style={{ margin: '0 0 5px' }}>
           Order Date: {new Date(order.created_at).toLocaleDateString()}
         </Text>
         <Text style={{ margin: '0 0 20px' }}>
-          Total: {order.summary.raw_current_order_total.value} {order.currency_code}
+          Total: {formatTotal(order)}
         </Text>
 
-        <Hr style={{ margin: '20px 0' }} />
-
-        <Text style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 10px' }}>
-          Shipping Address
-        </Text>
-        <Text style={{ margin: '0 0 5px' }}>
-          {shippingAddress.address_1}
-        </Text>
-        <Text style={{ margin: '0 0 5px' }}>
-          {shippingAddress.city}, {shippingAddress.province} {shippingAddress.postal_code}
-        </Text>
-        <Text style={{ margin: '0 0 20px' }}>
-          {shippingAddress.country_code}
-        </Text>
+        {hasAddress && (
+          <>
+            <Hr style={{ margin: '20px 0' }} />
+            <Text style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 10px' }}>
+              Shipping Address
+            </Text>
+            <Text style={{ margin: '0 0 5px' }}>
+              {shippingAddress!.address_1}
+            </Text>
+            <Text style={{ margin: '0 0 5px' }}>
+              {[shippingAddress!.city, shippingAddress!.province, shippingAddress!.postal_code].filter(Boolean).join(', ')}
+            </Text>
+            <Text style={{ margin: '0 0 20px' }}>
+              {(shippingAddress!.country_code || '').toUpperCase()}
+            </Text>
+          </>
+        )}
 
         <Hr style={{ margin: '20px 0' }} />
 
@@ -71,72 +97,22 @@ export const OrderPlacedTemplate: React.FC<OrderPlacedTemplateProps> & {
           Order Items
         </Text>
 
-        <div style={{
-          width: '100%',
-          borderCollapse: 'collapse',
-          border: '1px solid #ddd',
-          margin: '10px 0'
-        }}>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            backgroundColor: '#f2f2f2',
-            padding: '8px',
-            borderBottom: '1px solid #ddd'
+        {(order.items || []).map((item) => (
+          <div key={item.id} style={{
+            padding: '8px 0',
+            borderBottom: '1px solid #eaeaea',
           }}>
-            <Text style={{ fontWeight: 'bold' }}>Item</Text>
-            <Text style={{ fontWeight: 'bold' }}>Quantity</Text>
-            <Text style={{ fontWeight: 'bold' }}>Price</Text>
+            <Text style={{ margin: '0 0 2px', fontWeight: '500' }}>
+              {item.product_title} — {item.title}
+            </Text>
+            <Text style={{ margin: '0', color: '#666', fontSize: '14px' }}>
+              Qty: {item.quantity} × {((item.unit_price || 0) / 100).toFixed(2)} {(order.currency_code || 'USD').toUpperCase()}
+            </Text>
           </div>
-          {order.items.map((item) => (
-            <div key={item.id} style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              padding: '8px',
-              borderBottom: '1px solid #ddd'
-            }}>
-              <Text>{item.title} - {item.product_title}</Text>
-              <Text>{item.quantity}</Text>
-              <Text>{item.unit_price} {order.currency_code}</Text>
-            </div>
-          ))}
-        </div>
+        ))}
       </Section>
     </Base>
   )
 }
-
-OrderPlacedTemplate.PreviewProps = {
-  order: {
-    id: 'test-order-id',
-    display_id: 'ORD-123',
-    created_at: new Date().toISOString(),
-    email: 'test@example.com',
-    currency_code: 'USD',
-    items: [
-      { id: 'item-1', title: 'Item 1', product_title: 'Product 1', quantity: 2, unit_price: 10 },
-      { id: 'item-2', title: 'Item 2', product_title: 'Product 2', quantity: 1, unit_price: 25 }
-    ],
-    shipping_address: {
-      first_name: 'Test',
-      last_name: 'User',
-      address_1: '123 Main St',
-      city: 'Anytown',
-      province: 'CA',
-      postal_code: '12345',
-      country_code: 'US'
-    },
-    summary: { raw_current_order_total: { value: 45 } }
-  },
-  shippingAddress: {
-    first_name: 'Test',
-    last_name: 'User',
-    address_1: '123 Main St',
-    city: 'Anytown',
-    province: 'CA',
-    postal_code: '12345',
-    country_code: 'US'
-  }
-} as OrderPlacedPreviewProps
 
 export default OrderPlacedTemplate
