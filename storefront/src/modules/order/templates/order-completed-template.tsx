@@ -2,6 +2,7 @@ import { Heading } from "@medusajs/ui"
 import { cookies } from "next/headers"
 
 import CartTotals from "@modules/common/components/cart-totals"
+import GadsConversionEvent from "@modules/order/components/gads-conversion-event"
 import Help from "@modules/order/components/help"
 import Items from "@modules/order/components/items"
 import OnboardingCta from "@modules/order/components/onboarding-cta"
@@ -21,6 +22,11 @@ export default function OrderCompletedTemplate({
 
   return (
     <div className="py-6 min-h-[calc(100vh-64px)]">
+      <GadsConversionEvent
+        orderTotal={order.total}
+        currencyCode={order.currency_code}
+        orderId={order.id}
+      />
       <div className="content-container flex flex-col justify-center items-center gap-y-10 max-w-4xl h-full w-full">
         {isOnboarding && <OnboardingCta orderId={order.id} />}
         <div
