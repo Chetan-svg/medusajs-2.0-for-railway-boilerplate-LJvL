@@ -23,6 +23,8 @@ export default function OrderCompletedTemplate({
   return (
     <div className="py-6 min-h-[calc(100vh-64px)]">
       <GadsConversionEvent
+        gtagId={process.env.NEXT_PUBLIC_GTAG_ID || ""}
+        conversionLabel={process.env.NEXT_PUBLIC_GADS_CONVERSION_LABEL || ""}
         orderTotal={order.total}
         currencyCode={order.currency_code}
         orderId={order.id}

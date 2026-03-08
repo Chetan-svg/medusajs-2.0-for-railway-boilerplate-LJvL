@@ -3,12 +3,16 @@
 import { useEffect, useRef } from "react"
 
 type GadsConversionEventProps = {
+  gtagId: string
+  conversionLabel: string
   orderTotal: number
   currencyCode: string
   orderId: string
 }
 
 export default function GadsConversionEvent({
+  gtagId,
+  conversionLabel,
   orderTotal,
   currencyCode,
   orderId,
@@ -19,10 +23,7 @@ export default function GadsConversionEvent({
     if (hasFired.current) return
     hasFired.current = true
 
-    const gtagId = process.env.NEXT_PUBLIC_GTAG_ID
-    const conversionLabel = process.env.NEXT_PUBLIC_GADS_CONVERSION_LABEL
-
-    if (!gtagId || !conversionLabel || typeof window === "undefined") return
+    if (!gtagId || !conversionLabel) return
     if (typeof (window as any).gtag !== "function") return
 
     ;(window as any).gtag("event", "conversion", {
@@ -31,7 +32,7 @@ export default function GadsConversionEvent({
       currency: currencyCode.toUpperCase(),
       transaction_id: orderId,
     })
-  }, [orderTotal, currencyCode, orderId])
+  }, [gtagId, conversionLabel, orderTotal, currencyCode, orderId])
 
   return null
 }
